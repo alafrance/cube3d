@@ -6,43 +6,11 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 00:03:45 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/08 14:46:49 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/11 11:46:38 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-size_t	ft_strlen(const char *s)
-{
-	size_t i;
-
-	i = 0;
-	if (s == NULL)
-		return (0);
-	while (s[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strdup(char *src)
-{
-	char	*dest;
-	int		i;
-
-	i = 0;
-	while (src[i])
-		i++;
-	if (!(dest = malloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	i = 0;
-	while (src[i])
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
 
 char	*ft_strjoin_free(char *s1, char *s2)
 {

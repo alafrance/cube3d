@@ -6,13 +6,14 @@
 #    By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 15:06:50 by alafranc          #+#    #+#              #
-#    Updated: 2021/01/08 15:07:14 by alafranc         ###   ########lyon.fr    #
+#    Updated: 2021/01/11 14:52:59 by alafranc         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 # DONT FORGET TO UNCOMMENT CLEAN AND FCLEAN MINILIBX
 NAME			= cub3d
-FILES			= main.c
+FILES			= ft_utility.c ft_parsing.c  map_is_valid.c printer.c \
+main.c
 
 
 CC				= clang
@@ -52,4 +53,5 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY: all clean fclean re bonus lib
+
+.PHONY: all clean fclean re bonus lib test

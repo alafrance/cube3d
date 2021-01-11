@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 15:23:42 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/08 15:10:01 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/11 10:10:01 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ size_t				ft_strlcpy(char *dest, const char *src, size_t dstsize);
 size_t				ft_strlen(const char *s);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int					ft_strncmp(const char *s1, const char *s2, unsigned int n);
+int					ft_strcmp(const char *s1, const char *s2);
 char				*ft_strnstr(const char *str
 					, const char *to_find, size_t len);
 char				*ft_strrchr(const char *s, int c);
