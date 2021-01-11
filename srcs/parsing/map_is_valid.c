@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:53:13 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/11 17:22:26 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/11 21:29:42 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int     ft_map_is_valid(t_data data)
     is_player = 0;
     i = 0;
     if (!struct_is_valid(data))
-       return (ft_print_error("Wrong data"));
+       return (ft_error_msg_perso("Wrong data", &data));
     if (!data.map)
         return (0);
     while (data.map[i])
@@ -74,5 +74,17 @@ int	struct_is_valid(t_data data)
 		return (0);
 	}
 	close(fd);
+	return (1);
+}
+
+int	filename_format_is_valid(char *filename)
+{
+	int i = ft_strlen(filename) - 1;
+	/*
+	if (filename[i] == 'b' && filename[i - 1] == 'u' && filename[i - 2] == 'c'
+	 && filename[i - 3] == '.')
+		return (1);
+	return (0);
+	*/
 	return (1);
 }

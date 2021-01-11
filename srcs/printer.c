@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:54:45 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/11 17:29:25 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/11 20:44:23 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ void	ft_print_struct(t_data data)
 }
 
 
-int    ft_close(int bool)
+int    ft_close(int bool, t_data *data)
 {
     // DESTROY WINDOW
+	if (data->map)
+		free_all(data->map, ft_strslen(data->map));
     if (bool)
         exit(EXIT_SUCCESS);
     else
@@ -53,14 +55,14 @@ int    ft_close(int bool)
     return (0);
 }
 
-int    ft_error_msg(int errnum)
+int    ft_error_msg(int errnum, t_data *data)
 {
-    ft_printf("Error\n%s\n", strreror(errnum));
-    return (ft_close(0));
+    ft_printf("Error\n%s\n", strerror(errnum));
+    return (ft_close(0, data));
 }
 
-int    ft_error_msg_perso(char *error_msg)
+int    ft_error_msg_perso(char *error_msg, t_data *data)
 {
     ft_printf("Error\n%s\n", error_msg);
-    return (ft_close(0));
+    return (ft_close(0, data));
 }

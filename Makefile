@@ -6,20 +6,25 @@
 #    By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 15:06:50 by alafranc          #+#    #+#              #
-#    Updated: 2021/01/11 14:52:59 by alafranc         ###   ########lyon.fr    #
+#    Updated: 2021/01/11 21:19:11 by alafranc         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 # DONT FORGET TO UNCOMMENT CLEAN AND FCLEAN MINILIBX
 NAME			= cub3d
-FILES			= ft_utility.c ft_parsing.c  map_is_valid.c printer.c \
-main.c
-
+FILES			= ft_utility.c printer.c \
+$(addprefix parsing/, ft_parsing.c  map_is_valid.c ft_path_texture.c)
+INC_FILES		= cub3d.h
+INC_PATH		= ./includes/
+INC				= $(addprefix ${INC_PATH}, ${INC_FILES})
+SRC_PATH		= ./srcs/
+SRC				= $(addprefix ${SRC_PATH}, ${FILES})
 
 CC				= clang
-OBJS 			= ${FILES:.c=.o}
-FLAGS			= -Wall -Wextra -Werror
+OBJS 			= ${SRC:.c=.o}
+FLAGS			= #-Wall -Wextra -Werror
 
+#LIBRARY
 NAME_LIBFT 		= libft.a
 LIBFT_PATH 		= libft/
 LIBFT			= $(addprefix ${LIBFT_PATH}, ${NAME_LIBFT})
@@ -35,23 +40,25 @@ lib:
 				cp ${LIBFT} .
 				cp ${MINILIBX} .
 
-%.o : %.c 		cub3d.h
-				${CC} ${FLAGS} -c $< -o $@
+%.o: %.c 		${INC}
+				${CC} ${FLAGS} -c $< -o $@ -I ${INC_PATH}
 
 ${NAME}: 		lib ${OBJS}
-		${CC} ${OBJS} -o ${NAME} ${NAME_LIBFT} ${NAME_MINILIBX}
+				${CC} ${OBJS} main.c -o ${NAME} ${NAME_LIBFT} ${NAME_MINILIBX} -I ${INC_PATH}
 
 clean:
-			make -C ${LIBFT_PATH} clean
-			#make -C ${MINILIBX_PATH} clean
-			${RM} ${OBJS} ${OBJS_BONUS}
+				make -C ${LIBFT_PATH} clean
+				#make -C ${MINILIBX_PATH} clean
+				${RM} ${OBJS} ${OBJS_BONUS}
 
-fclean:		clean
-			${RM} ${NAME}
-			${RM} ${LIBFT}
-			#${RM} ${MINILIBX}
+fclean:			clean
+				${RM} ${NAME}
+				${RM} ${LIBFT}
+				${RM} ${NAME_LIBFT}
+				${RM} ${NAME_MINILIBX}
+				#${RM} ${MINILIBX}
 
-re:			fclean all
+re:				fclean all
 
 
 .PHONY: all clean fclean re bonus lib test
