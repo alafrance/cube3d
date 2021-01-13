@@ -12,6 +12,8 @@ void	init_data(t_data *data)
 	data->map = NULL;
 	data->color_floor = NULL;
 	data->color_roof = NULL;
+	data->pos_player[0] = 0;
+	data->pos_player[1] = 0;
 }
 
 
@@ -24,9 +26,11 @@ int main(int ac, char **av)
     if (ac != 2)
          return (0);
     fd = open(av[1], O_RDONLY);
-    if (fd <= 0 || !filename_format_is_valid(av[1]))
+    if (fd <= 0 || !ft_is_format(av[1], ".cub"))
         return (ft_error_msg(22, &data));
-    if (!(ft_parsing(fd, &data)) || !ft_map_is_valid(data))
+    if (!(ft_parsing(fd, &data)))
         return (0);
     ft_printf("EVERYTHING IS FINE\n");
+	close(fd);
+	return (1);
 }

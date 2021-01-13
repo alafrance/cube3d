@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:53:57 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/11 21:08:29 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/13 17:20:54 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,43 +21,26 @@ int		ft_parsing(int fd, t_data *data)
 	gnl = 0;
 	while ((gnl = get_next_line(fd, &line)) > 0
 		&& fill_struct_parsing(line, data))
-		free(line);
-	while (gnl == 0 || gnl == 1)
-	{
-		if (!map_line_is_valid(line))
-		{
 			free(line);
-            return (ft_error_msg_perso("Wrong data", data));
-		}
+	while (gnl >= 0)
+	{
 		data->map = ft_strsjoin(data->map, line);
 		free(line);
 		if (gnl == 0)
 			break;
 		gnl = get_next_line(fd, &line);
 	}
+	// ft_print_struct(*data);
+	/*
+	if (!data->path_etexture || !data->path_ntexture || !data->path_sprite
+		|| !data->path_stexture || !data->path_wtexture || !data->color_floor
+		|| !data->color_roof) //|| !data->resolution[0] || !data->resolution[1])
+		return (ft_error_msg_perso("Miss data", data));
+	*/
 	return (1);
 }
 
-int		ft_path_sprite(char **line_split, t_data *data)
-{
-
-}
-int		ft_color_floor(char **line_split, t_data *data)
-{
-
-}
-
-int		ft_color_roof(char **line_split, t_data *data)
-{
-	
-}
-
-int		ft_resolution(char **line_split, t_data *data)
-{
-	
-}
-
-int		ft_init_pos(char **line_split, int *pos)
+void	ft_init_pos(char **line_split, int *pos)
 {
 	if (!ft_strcmp(line_split[0], "NO"))
 		*pos = 0;
@@ -77,17 +60,20 @@ int		ft_init_pos(char **line_split, int *pos)
 		*pos = 7;
 	else
 		*pos = -1;
-	return (*pos);
 }
+
 int		fill_struct_parsing(char *line, t_data *data)
 {
 	char	**line_split;
 	int		pos;
 	int 	(*ft_parse[8])(char**, t_data *);
 
+	if (!ft_strlen(line))
+		return (1);
 	line_split = ft_split(line, ' ');
-	if (ft_init_pos(line_split, &pos) == -1)
-		return (ft_error_msg_perso("Wrong ID for data", data));
+	ft_init_pos(line_split, &pos);
+	if (pos == -1)
+		return (0);
 	ft_parse[0] = &ft_path_ntexture;
 	ft_parse[1] = &ft_path_stexture;
 	ft_parse[2] = &ft_path_wtexture;
@@ -99,5 +85,16 @@ int		fill_struct_parsing(char *line, t_data *data)
 	if (!line_split)
 		return (ft_error_msg(22, data));
 	return (ft_parse[pos](line_split, data));
-	return (1);
+}
+
+int	ft_is_format(char *filename, char *extension)
+{
+	int i = ft_strlen(filename) - 1;
+	if (i <= 3 || ft_strlen(extension) != 4)
+		return(0);
+	if (filename[i] == extension[3] &&
+		filename[i - 1] == extension[2] && filename[i - 2] == extension[1] 
+	 		&& filename[i - 3] == extension[0])
+		return (1);
+	return (0);
 }

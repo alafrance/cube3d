@@ -6,14 +6,14 @@
 #    By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 15:06:50 by alafranc          #+#    #+#              #
-#    Updated: 2021/01/11 21:19:11 by alafranc         ###   ########lyon.fr    #
+#    Updated: 2021/01/13 17:09:40 by alafranc         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 # DONT FORGET TO UNCOMMENT CLEAN AND FCLEAN MINILIBX
 NAME			= cub3d
-FILES			= ft_utility.c printer.c \
-$(addprefix parsing/, ft_parsing.c  map_is_valid.c ft_path_texture.c)
+FILES			= ft_utility.c printer.c ft_error.c \
+$(addprefix parsing/, ft_parsing.c ft_check_data.c ft_path_texture.c check_map.c)
 INC_FILES		= cub3d.h
 INC_PATH		= ./includes/
 INC				= $(addprefix ${INC_PATH}, ${INC_FILES})
@@ -22,7 +22,7 @@ SRC				= $(addprefix ${SRC_PATH}, ${FILES})
 
 CC				= clang
 OBJS 			= ${SRC:.c=.o}
-FLAGS			= #-Wall -Wextra -Werror
+FLAGS			= -Wall -Wextra -Werror
 
 #LIBRARY
 NAME_LIBFT 		= libft.a

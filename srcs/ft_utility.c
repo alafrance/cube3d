@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 10:14:13 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/11 15:50:47 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/12 16:24:58 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	free_all(char **strs, int j)
 	i = 0;
 	while (i != j)
 		free(strs[i++]);
-	free(strs);
+    if (strs)
+	    free(strs);
 }
 
 char **ft_strsjoin(char **s1, char *s2)
