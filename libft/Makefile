@@ -6,7 +6,7 @@
 #    By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 15:02:38 by alafranc          #+#    #+#              #
-#    Updated: 2021/01/11 10:09:39 by alafranc         ###   ########lyon.fr    #
+#    Updated: 2021/01/14 11:41:21 by alafranc         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c \
 ft_convert_base.c ft_putnbr_base.c ft_maths.c ft_atoi_base.c ft_check_base.c \
 ft_swap.c ft_strrev.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_size_nb.c \
-get_next_line.c get_next_line_utils.c \
+get_next_line.c get_next_line_utils.c ft_strs.c \
 $(addprefix ft_printf/, ft_printf.c ft_parse.c ft_display.c \
 ft_print_address.c ft_print_characters.c \
 ft_print_unsigned.c ft_print_decimal.c ft_putnbr_hexa.c ft_print_rate.c)

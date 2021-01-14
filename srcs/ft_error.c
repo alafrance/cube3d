@@ -6,41 +6,61 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 13:07:01 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/13 20:13:37 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/14 13:46:23 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int    ft_close(int bool, t_data *data)
+void    ft_close(int bool, t_data *data)
 {
+	free_struct(data);
 	// DESTROY WINDOW
-	if (data->map)
-		free_all(data->map, ft_strslen(data->map));
 	if (bool)
 		exit(EXIT_SUCCESS);
 	else
 		exit(EXIT_FAILURE);
-	return (0);
 }
 
-int    ft_error_msg(int errnum, t_data *data)
+
+void	miss_element(t_data *data)
+{
+	if (!data->map)
+		ft_error_msg_perso("Miss map", data);
+	if (!data->path_ntexture)
+		ft_error_msg_perso("Miss map", data);
+	if (!data->path_stexture)
+		ft_error_msg_perso("Miss map", data);
+	if (!data->path_wtexture)
+		ft_error_msg_perso("Miss map", data);
+	if (!data->path_etexture)
+		ft_error_msg_perso("Miss map", data);
+	if (!data->path_sprite)
+		ft_error_msg_perso("Miss map", data);
+	if (!data->color_floor)
+		ft_error_msg_perso("Miss map", data);
+	if (!data->color_roof)
+		ft_error_msg_perso("Miss map", data);
+}
+
+int		ft_error_msg(int errnum, t_data *data)
 {
 	ft_printf("Error\n%s\n", strerror(errnum));
-	return (ft_close(0, data));
+	ft_close(0, data);
+	return (0);
 }
 
 int    ft_error_msg_perso(char *error_msg, t_data *data)
 {
 	ft_printf("Error\n%s\n", error_msg);
-	return (ft_close(0, data));
+	ft_close(0, data);
+	return (0);
 }
 
-int     ft_error_data(char **line_split, t_data *data, char *data_str)
+void     ft_error_data(char **line_split, t_data *data, char *data_str)
 {
 	if (ft_strslen(line_split) != 2)
-        return(ft_error_msg(79, data));
+        ft_error_msg(79, data);
     if (data_str != NULL)
-        return (ft_error_msg_perso("Duplicate Data", data));
-    return (1);
+        ft_error_msg_perso("Duplicate Data", data);
 }

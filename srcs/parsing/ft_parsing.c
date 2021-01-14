@@ -6,13 +6,13 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:53:57 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/13 19:38:58 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/14 14:08:18 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_parsing(int fd, t_data *data)
+void		ft_parsing(int fd, t_data *data)
 {
 	char	*line;
 	int		gnl;
@@ -33,8 +33,8 @@ int		ft_parsing(int fd, t_data *data)
 	if (!data->path_etexture || !data->path_ntexture || !data->path_sprite
 		|| !data->path_stexture || !data->path_wtexture || !data->color_floor
 		|| !data->color_roof || !data->resolution[0] || !data->resolution[1])
-		return (ft_error_msg_perso("Miss data", data));
-	return (1);
+		ft_error_msg_perso("Miss data", data);
+	ft_check_map(data);
 }
 
 void	ft_init_pos(char **line_split, int *pos)
@@ -86,14 +86,3 @@ int		fill_struct_parsing(char *line, t_data *data)
 	return (1);
 }
 
-int	ft_is_format(char *filename, char *extension)
-{
-	int i = ft_strlen(filename) - 1;
-	if (i <= 3 || ft_strlen(extension) != 4)
-		return(0);
-	if (filename[i] == extension[3] &&
-		filename[i - 1] == extension[2] && filename[i - 2] == extension[1] 
-	 		&& filename[i - 3] == extension[0])
-		return (1);
-	return (0);
-}

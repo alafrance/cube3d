@@ -6,21 +6,11 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 15:18:32 by alafranc          #+#    #+#             */
-/*   Updated: 2020/11/15 15:18:33 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/14 11:37:07 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static void	free_all(char **strs, int j)
-{
-	int i;
-
-	i = 0;
-	while (i != j)
-		free(strs[i++]);
-	free(strs);
-}
 
 static char	*malloc_a_case(const char *str, char c, char **strs, int index)
 {

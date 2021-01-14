@@ -6,32 +6,30 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 10:14:13 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/13 20:31:17 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/14 13:45:12 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int ft_strslen(char **strs)
+void	free_struct(t_data *data)
 {
-    int i;
-
-    i = 0;
-    if (!strs)
-        return (0);
-    while (strs[i] != NULL)
-        i++;
-    return (i);
-}
-
-void	free_all(char **strs, int j)
-{
-	int i;
-	i = 0;
-	while (i != j)
-	 	free(strs[i++]);
-    if (strs)
-	    free(strs);
+	if (data->map)
+		free_all(data->map, ft_strslen(data->map));
+	if (data->path_ntexture)
+		free(data->path_ntexture);
+	if (data->path_stexture)
+		free(data->path_stexture);
+	if (data->path_wtexture)
+		free(data->path_wtexture);
+	if (data->path_etexture)
+		free(data->path_etexture);
+	if (data->path_sprite)
+		free(data->path_sprite);
+	if (data->color_floor)
+		free(data->color_floor);
+	if (data->color_roof)
+		free(data->color_roof);
 }
 
 int    ft_is_number_str(char *str)
@@ -50,22 +48,14 @@ int    ft_is_number_str(char *str)
     return (1);
 }
 
-char **ft_strsjoin(char **s1, char *s2)
+int	ft_is_format(char *filename, char *extension)
 {
-    char    **strs;
-    int     i;
-
-    i = 0;
-    if (!(strs = malloc(sizeof(char*) * (ft_strslen(s1) + 2))))
-        return (NULL);
-    if (s1)
-        while (s1[i])
-        {
-            strs[i] = ft_strdup(s1[i]);
-            i++;
-        }
-    strs[i++] = ft_strdup(s2);
-    strs[i] = NULL;
-    free_all(s1, ft_strslen(s1));
-    return (strs);
+	int i = ft_strlen(filename) - 1;
+	if (i <= 3 || ft_strlen(extension) != 4)
+		return(0);
+	if (filename[i] == extension[3] &&
+		filename[i - 1] == extension[2] && filename[i - 2] == extension[1] 
+	 		&& filename[i - 3] == extension[0])
+		return (1);
+	return (0);
 }
