@@ -6,46 +6,38 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 20:57:24 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/13 17:21:06 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/13 19:16:21 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_path_ntexture(char **line_split, t_data *data)
+void		ft_path_ntexture(char **line_split, t_data *data)
 {
 	if (!ft_path_texture_valid(line_split, data, data->path_ntexture))
-		return (0);
-	data->path_ntexture = line_split[1];
-	free_all(line_split, ft_strslen(line_split));
-	return (1);
+		return ;
+	data->path_ntexture = ft_strdup(line_split[1]);
 }
 
-int		ft_path_stexture(char **line_split, t_data *data)
+void		ft_path_stexture(char **line_split, t_data *data)
 {
 	if (!ft_path_texture_valid(line_split, data, data->path_stexture))
-		return (0);
-	data->path_stexture = line_split[1];
-	free_all(line_split, ft_strslen(line_split));
-	return (1);
+		return ;
+	data->path_stexture = ft_strdup(line_split[1]);
 }
 
-int		ft_path_wtexture(char **line_split, t_data *data)
+void		ft_path_wtexture(char **line_split, t_data *data)
 {
 	if (!ft_path_texture_valid(line_split, data, data->path_wtexture))
-		return (0);
-	data->path_wtexture = line_split[1];
-	free_all(line_split, ft_strslen(line_split));
-	return (1);
+		return ;
+	data->path_wtexture = ft_strdup(line_split[1]);
 }
 
-int		ft_path_etexture(char **line_split, t_data *data)
+void		ft_path_etexture(char **line_split, t_data *data)
 {
 	if (!ft_path_texture_valid(line_split, data, data->path_etexture))
-		return (0);
-	data->path_etexture = line_split[1];
-	free_all(line_split, ft_strslen(line_split));
-	return (1);
+		return ;
+	data->path_etexture = ft_strdup(line_split[1]);
 }
 
 int		ft_path_texture_valid(char **line_split, t_data *data, char *texture)

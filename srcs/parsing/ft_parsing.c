@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:53:57 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/13 17:20:54 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/13 19:38:58 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,10 @@ int		ft_parsing(int fd, t_data *data)
 			break;
 		gnl = get_next_line(fd, &line);
 	}
-	// ft_print_struct(*data);
-	/*
 	if (!data->path_etexture || !data->path_ntexture || !data->path_sprite
 		|| !data->path_stexture || !data->path_wtexture || !data->color_floor
-		|| !data->color_roof) //|| !data->resolution[0] || !data->resolution[1])
+		|| !data->color_roof || !data->resolution[0] || !data->resolution[1])
 		return (ft_error_msg_perso("Miss data", data));
-	*/
 	return (1);
 }
 
@@ -66,7 +63,7 @@ int		fill_struct_parsing(char *line, t_data *data)
 {
 	char	**line_split;
 	int		pos;
-	int 	(*ft_parse[8])(char**, t_data *);
+	void 	(*ft_parse[8])(char**, t_data *);
 
 	if (!ft_strlen(line))
 		return (1);
@@ -84,7 +81,9 @@ int		fill_struct_parsing(char *line, t_data *data)
 	ft_parse[7] = &ft_resolution;
 	if (!line_split)
 		return (ft_error_msg(22, data));
-	return (ft_parse[pos](line_split, data));
+	ft_parse[pos](line_split, data);
+	free_all(line_split, ft_strslen(line_split));
+	return (1);
 }
 
 int	ft_is_format(char *filename, char *extension)
