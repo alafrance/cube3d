@@ -6,15 +6,14 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 15:23:42 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/14 11:40:20 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/15 17:44:04 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-#ifndef BUFFER_SIZE
 # define BUFFER_SIZE 1
-#endif
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
@@ -123,7 +122,8 @@ const char			*parse_flags_precision(const char *format,
 const char			*parse(const char *format, t_flags *flags, va_list ap);
 int					ft_display_space(int nb_space);
 int					ft_display_zero(int nb_zero);
-int					ft_display_space_unsigned(int nb, int size_nb, t_flags flags);
+int					ft_display_space_unsigned(int nb, int size_nb
+					, t_flags flags);
 int					ft_display_zero_unsigned(int size_nb, t_flags flags);
 int					ft_display_nb_unsigned(long nb, int size_nb, t_flags flags
 								, int (f)(unsigned long long));

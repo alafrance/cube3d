@@ -21,7 +21,6 @@ int main(int ac, char **av)
 {
     t_data  data;
     int     fd;
-
 	init_data(&data);
     if (ac != 2)
          return (ft_error_msg(22, &data));
@@ -30,6 +29,7 @@ int main(int ac, char **av)
         return (ft_error_msg(22, &data));
     ft_parsing(fd, &data);
     ft_printf("EVERYTHING IS FINE\n");
+	free_struct(&data);
 	close(fd);
 	return (1);
 }

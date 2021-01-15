@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 13:23:13 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/14 11:27:54 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/15 14:57:24 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,21 @@ void		ft_color(char **line_split, t_data *data, char *color)
 	ft_error_data(line_split, data, color);
 	color_split = ft_split(line_split[1], ',');
 	if (ft_strslen(color_split) != 3)
-		ft_error_msg_perso("Wrong Format of color: R,G,B", data);
+	{
+		free_all(color_split, ft_strslen(color_split));
+		ft_error_msg_perso("Wrong Format of color: R,G,B", data);	
+	}
 	while (color_split[i])
 	{
 		if (ft_atoi(color_split[i]) < 0 || ft_atoi(color_split[i]) > 255
 			|| !ft_is_number_str(color_split[i]))
+		{
+			free_all(color_split, ft_strslen(color_split));
 			ft_error_msg_perso("Wrong number for color, between 0-255", data);
+		}
 		i++;
 	}
+	free_all(color_split, ft_strslen(color_split));
 }
 
 void ft_color_roof(char **line_split, t_data *data)

@@ -17,6 +17,7 @@ typedef struct	s_data
 	char 		*color_floor;
 	char 		*color_roof;
 	int			pos_player[2];
+	char		pos_camera;
 }				t_data;
 void			ft_parsing(int fd, t_data *data);
 int				fill_struct_parsing(char *line, t_data *data);
@@ -50,4 +51,5 @@ void			ft_print_struct(t_data data);
 void			ft_check_map(t_data *data);
 void			ft_check_map_characters_and_pos(char **map , t_data *data);
 void			ft_check_hole_in_wall(char **map, int i, int j, t_data *data);
+void			miss_element(t_data *data);
 #endif

@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:53:57 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/14 14:08:18 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/15 15:03:14 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ void		ft_parsing(int fd, t_data *data)
 	int		gnl;
 
 	line = NULL;
-	gnl = 0;
 	while ((gnl = get_next_line(fd, &line)) > 0
 		&& fill_struct_parsing(line, data))
-			free(line);
+			free(line);			
 	while (gnl >= 0)
 	{
 		data->map = ft_strsjoin(data->map, line);
@@ -33,7 +32,7 @@ void		ft_parsing(int fd, t_data *data)
 	if (!data->path_etexture || !data->path_ntexture || !data->path_sprite
 		|| !data->path_stexture || !data->path_wtexture || !data->color_floor
 		|| !data->color_roof || !data->resolution[0] || !data->resolution[1])
-		ft_error_msg_perso("Miss data", data);
+		miss_element(data);
 	ft_check_map(data);
 }
 
