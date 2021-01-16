@@ -6,13 +6,13 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:53:57 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/15 15:03:14 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/16 16:16:27 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		ft_parsing(int fd, t_data *data)
+void	ft_parsing(int fd, t_data *data)
 {
 	char	*line;
 	int		gnl;
@@ -20,20 +20,20 @@ void		ft_parsing(int fd, t_data *data)
 	line = NULL;
 	while ((gnl = get_next_line(fd, &line)) > 0
 		&& fill_struct_parsing(line, data))
-			free(line);			
+		free(line);
 	while (gnl >= 0)
 	{
 		data->map = ft_strsjoin(data->map, line);
 		free(line);
 		if (gnl == 0)
-			break;
+			break ;
 		gnl = get_next_line(fd, &line);
 	}
+	ft_check_map(data);
 	if (!data->path_etexture || !data->path_ntexture || !data->path_sprite
 		|| !data->path_stexture || !data->path_wtexture || !data->color_floor
 		|| !data->color_roof || !data->resolution[0] || !data->resolution[1])
 		miss_element(data);
-	ft_check_map(data);
 }
 
 void	ft_init_pos(char **line_split, int *pos)
@@ -62,7 +62,7 @@ int		fill_struct_parsing(char *line, t_data *data)
 {
 	char	**line_split;
 	int		pos;
-	void 	(*ft_parse[8])(char**, t_data *);
+	void	(*ft_parse[8])(char**, t_data *);
 
 	if (!ft_strlen(line))
 		return (1);
@@ -84,4 +84,3 @@ int		fill_struct_parsing(char *line, t_data *data)
 	free_all(line_split, ft_strslen(line_split));
 	return (1);
 }
-

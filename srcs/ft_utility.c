@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 10:14:13 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/14 13:45:12 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/16 16:47:00 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,30 +32,32 @@ void	free_struct(t_data *data)
 		free(data->color_roof);
 }
 
-int    ft_is_number_str(char *str)
+int		ft_is_number_str(char *str)
 {
-    int i;
-    
-    i = 0;
-    if (!str)
-        return (0);
-    while (str[i])
-    {
-        if (!(str[i] >= '0' && str[i] <= '9'))
-            return (0);
-        i++;
-    }
-    return (1);
+	int i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-int	ft_is_format(char *filename, char *extension)
+int		ft_is_format(char *filename, char *extension)
 {
-	int i = ft_strlen(filename) - 1;
+	int i;
+
+	i = ft_strlen(filename) - 1;
 	if (i <= 3 || ft_strlen(extension) != 4)
-		return(0);
+		return (0);
 	if (filename[i] == extension[3] &&
-		filename[i - 1] == extension[2] && filename[i - 2] == extension[1] 
-	 		&& filename[i - 3] == extension[0])
+		filename[i - 1] == extension[2] && filename[i - 2] == extension[1]
+		&& filename[i - 3] == extension[0])
 		return (1);
 	return (0);
 }

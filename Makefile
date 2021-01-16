@@ -6,12 +6,12 @@
 #    By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 15:06:50 by alafranc          #+#    #+#              #
-#    Updated: 2021/01/15 14:50:06 by alafranc         ###   ########lyon.fr    #
+#    Updated: 2021/01/16 16:14:00 by alafranc         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 # DONT FORGET TO UNCOMMENT CLEAN AND FCLEAN MINILIBX
-NAME			= a.out
+NAME			= cub3d
 FILES			= ft_utility.c printer.c ft_error.c \
 $(addprefix parsing/, ft_parsing.c ft_check_data.c ft_path_texture.c check_map.c)
 INC_FILES		= cub3d.h

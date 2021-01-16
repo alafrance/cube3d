@@ -12,18 +12,18 @@
 
 #include "cub3d.h"
 
-void		ft_path_sprite(char **line_split, t_data *data)
+void	ft_path_sprite(char **line_split, t_data *data)
 {
 	if (!ft_path_texture_valid(line_split, data, data->path_sprite))
 		return ;
 	data->path_sprite = ft_strdup(line_split[1]);
 }
 
-void		ft_color(char **line_split, t_data *data, char *color)
+void	ft_color(char **line_split, t_data *data, char *color)
 {
-	int     i;
-	int     count;
-	char    **color_split;
+	int		i;
+	int		count;
+	char	**color_split;
 
 	count = 0;
 	i = 0;
@@ -32,7 +32,7 @@ void		ft_color(char **line_split, t_data *data, char *color)
 	if (ft_strslen(color_split) != 3)
 	{
 		free_all(color_split, ft_strslen(color_split));
-		ft_error_msg_perso("Wrong Format of color: R,G,B", data);	
+		ft_error_msg_perso("Wrong Format of color: R,G,B", data);
 	}
 	while (color_split[i])
 	{
@@ -47,19 +47,19 @@ void		ft_color(char **line_split, t_data *data, char *color)
 	free_all(color_split, ft_strslen(color_split));
 }
 
-void ft_color_roof(char **line_split, t_data *data)
+void	ft_color_roof(char **line_split, t_data *data)
 {
 	ft_color(line_split, data, data->color_roof);
-	data->color_roof = ft_strdup(line_split[1]);   
+	data->color_roof = ft_strdup(line_split[1]);
 }
 
-void ft_color_floor(char **line_split, t_data *data)
+void	ft_color_floor(char **line_split, t_data *data)
 {
 	ft_color(line_split, data, data->color_floor);
 	data->color_floor = ft_strdup(line_split[1]);
 }
 
-void		ft_resolution(char **line_split, t_data *data)
+void	ft_resolution(char **line_split, t_data *data)
 {
 	if (ft_strslen(line_split) != 3)
 		ft_error_msg(79, data);
