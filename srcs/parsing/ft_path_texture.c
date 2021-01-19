@@ -12,28 +12,28 @@
 
 #include "cub3d.h"
 
-void		ft_path_ntexture(char **line_split, t_data *data)
+void	ft_path_ntexture(char **line_split, t_data *data)
 {
 	if (!ft_path_texture_valid(line_split, data, data->path_ntexture))
 		return ;
 	data->path_ntexture = ft_strdup(line_split[1]);
 }
 
-void		ft_path_stexture(char **line_split, t_data *data)
+void	ft_path_stexture(char **line_split, t_data *data)
 {
 	if (!ft_path_texture_valid(line_split, data, data->path_stexture))
 		return ;
 	data->path_stexture = ft_strdup(line_split[1]);
 }
 
-void		ft_path_wtexture(char **line_split, t_data *data)
+void	ft_path_wtexture(char **line_split, t_data *data)
 {
 	if (!ft_path_texture_valid(line_split, data, data->path_wtexture))
 		return ;
 	data->path_wtexture = ft_strdup(line_split[1]);
 }
 
-void		ft_path_etexture(char **line_split, t_data *data)
+void	ft_path_etexture(char **line_split, t_data *data)
 {
 	if (!ft_path_texture_valid(line_split, data, data->path_etexture))
 		return ;

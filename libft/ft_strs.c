@@ -6,13 +6,13 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:36:38 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/14 14:10:41 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/16 16:41:46 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_strslen(char **strs)
+int		ft_strslen(char **strs)
 {
 	int i;
 
@@ -27,17 +27,18 @@ int ft_strslen(char **strs)
 void	free_all(char **strs, int j)
 {
 	int i;
+
 	i = 0;
 	while (i != j)
-	 	free(strs[i++]);
+		free(strs[i++]);
 	if (strs)
 		free(strs);
 }
 
-char **ft_strsjoin(char **s1, char *s2)
+char	**ft_strsjoin(char **s1, char *s2)
 {
-	char    **strs;
-	int     i;
+	char	**strs;
+	int		i;
 
 	i = 0;
 	if (!(strs = malloc(sizeof(char*) * (ft_strslen(s1) + 2))))
@@ -54,11 +55,11 @@ char **ft_strsjoin(char **s1, char *s2)
 	return (strs);
 }
 
-char **ft_strsdup(char **s1)
+char	**ft_strsdup(char **s1)
 {
-	char **strs;
-	int i;
-	int j;
+	char	**strs;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;

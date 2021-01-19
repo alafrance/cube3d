@@ -6,13 +6,13 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 13:07:01 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/15 15:02:24 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/16 16:46:27 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void    ft_close(int bool, t_data *data)
+void	ft_close(int bool, t_data *data)
 {
 	free_struct(data);
 	if (bool)
@@ -20,7 +20,6 @@ void    ft_close(int bool, t_data *data)
 	else
 		exit(EXIT_FAILURE);
 }
-
 
 void	miss_element(t_data *data)
 {
@@ -50,20 +49,20 @@ int		ft_error_msg(int errnum, t_data *data)
 	return (0);
 }
 
-int    ft_error_msg_perso(char *error_msg, t_data *data)
+int		ft_error_msg_perso(char *error_msg, t_data *data)
 {
 	ft_printf("Error\n%s\n", error_msg);
 	ft_close(0, data);
 	return (0);
 }
 
-void     ft_error_data(char **line_split, t_data *data, char *data_str)
+void	ft_error_data(char **line_split, t_data *data, char *data_str)
 {
 	if (ft_strslen(line_split) != 2)
 	{
 		free_all(line_split, ft_strslen(line_split));
-        ft_error_msg(79, data);		
+		ft_error_msg(79, data);
 	}
-    if (data_str != NULL)
-        ft_error_msg_perso("Duplicate Data", data);
+	if (data_str != NULL)
+		ft_error_msg_perso("Duplicate Data", data);
 }
