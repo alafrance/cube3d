@@ -6,12 +6,11 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:59:04 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/15 17:14:18 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 14:47:43 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
 
 void	ft_check_map(t_data *data)
 {

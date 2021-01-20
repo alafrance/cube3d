@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 15:23:42 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/15 17:44:04 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 16:16:13 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,4 +134,5 @@ int					ft_strslen(char **strs);
 void				free_all(char **strs, int j);
 char				**ft_strsjoin(char **s1, char *s2);
 char				**ft_strsdup(char **s1);
+int					ft_abs(int nb);
 #endif

@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:54:45 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/14 13:40:14 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 16:41:59 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,20 @@ void	ft_print_strs(char **strs)
 		ft_printf("%s\n", strs[i++]);
 }
 
-void	ft_print_struct(t_data data)
+void	ft_print_struct(t_ray data)
 {
 	int i;
 
 	i = 0;
-	ft_printf("path_etexture: %s\n", data.path_etexture);
-	ft_printf("path_ntexture: %s\n", data.path_ntexture);
-	ft_printf("path_stexture: %s\n", data.path_stexture);
-	ft_printf("path_wtexture: %s\n", data.path_wtexture);
-	ft_printf("path_sprite: %s\n", data.path_sprite);
-	ft_printf("color_floor: %s\n", data.color_floor);
-	ft_printf("color_roof: %s\n", data.color_roof);
-	ft_printf("resolution: %d, %d\n", data.resolution[0], data.resolution[1]);
+	printf("stepX: %d, stepY:\n", data.step[0], data.step[1]);
+	printf("mapX: %d, mapY: %d\n", data.map[0], data.map[1]);
+	printf("is_hit: %d\n", data.is_hit);
+	printf("eucli_distX: %f, eucli_distY: %f\n", data.eucli_dist[0], data.eucli_dist[1]);
+	printf("deltaDistX: %f, deltaDistY: %f\n", data.deltaDist[0], data.deltaDist[1]);
+	printf("dist: %f\n", data.dist);
+	printf("ray_dirX: %f, ray_dirY: %f\n", data.rayDir[0], data.rayDir[1]);
+	printf("dirX: %d, dirY: %d\n", data.dir[0], data.dir[1]);
+	printf("side: %d\n", data.side);
 	if (data.map)
 		while (data.map[i])
 		{

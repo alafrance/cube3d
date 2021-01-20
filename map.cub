@@ -3,11 +3,6 @@ NO textures/brown_b.xpm
 SO textures/multi_b.xpm
 WE textures/snow_b.xpm
 EA textures/stone.xpm
+S sprites/guard.xpm
 F 0,0,0
 C 225,30,26
-
-1111111
-1000001
-1000001
-100N001
-1111111
