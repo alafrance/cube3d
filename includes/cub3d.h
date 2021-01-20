@@ -35,7 +35,6 @@ typedef struct	s_ray {
 }				t_ray;
 void			ft_parsing(int fd, t_data *data);
 int				fill_struct_parsing(char *line, t_data *data);
-void			ft_print_struct(t_data data);
 void			init_data(t_data *data);
 int				fill_struct_parsing(char *line, t_data *data);
 int				fill_struct_parsing_texture(char **line_split, t_data *data);
