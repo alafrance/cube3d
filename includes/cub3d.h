@@ -21,7 +21,10 @@ typedef struct	s_data
 	char		*color_roof;
 	int			pos_player[2];
 	char		pos_camera;
+	int			w_max;
+	int			h_max;
 }				t_data;
+
 typedef struct	s_ray {
 	int			step[2];
 	int			map[2];
@@ -30,9 +33,26 @@ typedef struct	s_ray {
 	double		deltaDist[2];
 	double		dist;
 	double		rayDir[2];
-	int			dir[2];
+	double		dir[2];
 	int			side;
+	double		plane[2];
+	int			h_wall;
 }				t_ray;
+
+typedef struct  s_img {
+	void        *img;
+	char        *addr;
+	int         bits_per_pixel;
+	int         line_length;
+	int         endian;
+}               t_img;
+
+typedef struct s_window {
+	void *mlx;
+	void *mlx_win;
+	t_img img;
+}				t_window;
+
 void			ft_parsing(int fd, t_data *data);
 int				fill_struct_parsing(char *line, t_data *data);
 void			init_data(t_data *data);
@@ -66,11 +86,15 @@ void			ft_check_map(t_data *data);
 void			ft_check_map_characters_and_pos(char **map, t_data *data);
 void			ft_check_hole_in_wall(char **map, int i, int j, t_data *data);
 void			miss_element(t_data *data);
-void			ft_raycasting(t_data data);
+void			ft_raycasting(t_data data, t_ray *ray_data, int i);
 void			init_ray_data(t_data data, t_ray *ray_data);
-void			display_column(int column, int size_wall);
-t_ray			calculate_distance(t_data data, t_ray ray_data);
+t_ray			calculate_distance(t_data data, t_ray ray_data, int i);
 void			until_wall_is_hit(t_data data, t_ray *ray_data);
 void			calculate_step_and_dist(t_data data, t_ray *ray_data);
 void			caculate_deltaDist(t_ray *ray_data);
+void			calculate_max_map(t_data *data);
+void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void			ft_display_column(t_window window, int *draw, int column);
+void			ft_init_window(t_window *window, t_data data);
+void			ft_display_raycasting(t_data data);
 #endif

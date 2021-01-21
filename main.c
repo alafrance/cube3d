@@ -28,7 +28,7 @@ int main(int ac, char **av)
     if (fd <= 0 || !ft_is_format(av[1], ".cub"))
         return (ft_error_msg(22, &data));
     ft_parsing(fd, &data);
-	ft_raycasting(data);
+	ft_display_raycasting(data);
 	free_struct(&data);
 	close(fd);
 	return (1);
