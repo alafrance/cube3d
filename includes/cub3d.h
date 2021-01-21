@@ -90,7 +90,7 @@ void			ft_raycasting(t_data data, t_ray *ray_data, int i);
 void			init_ray_data(t_data data, t_ray *ray_data);
 t_ray			calculate_distance(t_data data, t_ray ray_data, int i);
 void			until_wall_is_hit(t_data data, t_ray *ray_data);
-void			calculate_step_and_dist(t_data data, t_ray *ray_data);
+void			init_step_and_eucli_dist(t_data data, t_ray *ray_data);
 void			caculate_deltaDist(t_ray *ray_data);
 void			calculate_max_map(t_data *data);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);

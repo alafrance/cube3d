@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:46:25 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/21 16:21:33 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 23:24:38 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ void ft_display_raycasting(t_data data)
 	t_ray ray_data;
 	t_window window;
 
-	column = 1;
+	column = -1;
 	ft_init_window(&window, data);
 	init_ray_data(data, &ray_data);
-	// while (++column < data.resolution[0])
-	// {
+	data.pos_player[0] = 22;
+	data.pos_player[1] = 12;
+	while (++column < data.resolution[0])
+	{
 			ft_raycasting(data, &ray_data, column);
-			ft_print_struct(ray_data);
+			// ft_print_struct(ray_data);
 			draw[0] = -ray_data.h_wall / 2 + data.resolution[1] / 2;
 			if (draw[0] < 0)
 				draw[0] = 0;
@@ -33,7 +35,7 @@ void ft_display_raycasting(t_data data)
 			if (draw[1] >= data.resolution[1])
 				draw[1] = data.resolution[1] - 1;
 			ft_display_column(window, draw, column);
-	// }
+	}
 	mlx_put_image_to_window(window.mlx, window.mlx_win, window.img.img, 0, 0);
     mlx_loop(window.mlx);
 }
