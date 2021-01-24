@@ -6,7 +6,7 @@
 #    By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 15:06:50 by alafranc          #+#    #+#              #
-#    Updated: 2021/01/21 13:33:16 by alafranc         ###   ########lyon.fr    #
+#    Updated: 2021/01/24 17:04:21 by alafranc         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME			= cub3d
 FILES			= ft_utility.c printer.c ft_error.c \
 $(addprefix parsing/, ft_parsing.c ft_check_data.c ft_path_texture.c check_map.c) \
-$(addprefix raycasting/, ft_raycasting.c ft_ray_calc.c ft_window.c)
+$(addprefix raycasting/, ft_raycasting.c ft_ray_calc.c ft_window.c ft_move_camera.c)
 INC_FILES		= cub3d.h
 INC_PATH		= ./includes/
 INC				= $(addprefix ${INC_PATH}, ${INC_FILES})
