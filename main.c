@@ -47,4 +47,7 @@ typedef struct  s_data_img {
 img.img = mlx_xpm_file_to_image (mlx, "textures/brown_b.xpm", &(img.width), &(img.height));
 img.addr = (int*)mlx_get_data_addr (img.img, &(img.bits_per_pixel), &(img.size_line),&(img.endian));
 printf("%d\n", img.addr[100]);
+
+RAPPORT TAILLE 
+calcul float
 */

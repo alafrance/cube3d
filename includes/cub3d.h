@@ -1,6 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
-
+# define true 1
+# define false 1
 # include "../minilibx/mlx.h"
 # include "../libft/libft.h"
 # include <fcntl.h>
@@ -56,10 +57,10 @@ typedef struct s_window {
 
 typedef struct	s_tab
 {
-	t_ray *ray_data;
-	int		*posX;
-	int		*posY;
-	char	**map;
+	t_ray ray_data;
+	t_data data;
+	t_window window;
+	int		is_pressed;
 }				t_tab;
 
 void			ft_parsing(int fd, t_data *data);
@@ -108,5 +109,10 @@ void			ft_display_raycasting(t_data data);
 void			init_ray_data_before(t_ray *ray_data);
 void			init_ray_data_after(t_data data, t_ray *ray_data);
 int				change_color_in_hexa(char *color);
-int				ft_move_camera(int keycode, t_tab a_struct);
+int				ft_event_pressed(int keycode, t_tab *ar_s);
+int				ft_event_released(int keycode, t_tab *ar_s);
+int				ft_close_window(t_tab *ar_s);
+void			ft_refresh(t_tab *ar_s);
+void			move(t_tab *ar_s, int moveSpeed, char op);
+void			rotate(t_tab *ar_s, int rotSpeed);
 #endif

@@ -6,13 +6,11 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:46:25 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/24 18:20:45 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/25 16:58:27 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
 
 void ft_display_raycasting(t_data data)
 {
@@ -20,18 +18,16 @@ void ft_display_raycasting(t_data data)
 	t_window window;
 	t_tab ar_s;
 
-	while (1 == 1)
-	{
-		ft_init_window(&window, data);
-		ft_raycasting(data, &ray_data, window);
-		mlx_put_image_to_window(window.mlx, window.mlx_win, window.img.img, 0, 0);
-		ar_s.ray_data = &ray_data;
-		ar_s.posX = &data.pos_player[0];
-		ar_s.posY = &data.pos_player[1];
-		ar_s.map = data.map;
-		mlx_hook(window.mlx_win, 2, 1L<<0, ft_move_camera, &ar_s);
-		mlx_loop(window.mlx);
-	}
+	ft_init_window(&window, data);
+	ft_raycasting(data, &ray_data, window);
+	mlx_put_image_to_window(window.mlx, window.mlx_win, window.img.img, 0, 0);
+	ar_s.ray_data = ray_data;
+	ar_s.data = data;
+	ar_s.window = window;
+	mlx_hook(window.mlx_win, 2, 1L<<0, ft_event_pressed, &ar_s);
+	mlx_hook(window.mlx_win, 3, 1L<<1, ft_event_released, &ar_s);
+	mlx_hook(window.mlx_win, 17, 0L, ft_close_window, &ar_s);
+	mlx_loop(window.mlx);
 }
 
 void	ft_raycasting(t_data data, t_ray *ray_data, t_window window)
@@ -71,8 +67,4 @@ void init_ray_data_after(t_data data, t_ray *ray_data)
 	ray_data->map[0] = data.pos_player[0];
 	ray_data->map[1] = data.pos_player[1];
 	ray_data->is_hit = 0;
-	ray_data->plane[0] = 0;
-	ray_data->plane[1] = 0.66;
-	ray_data->dir[0] = -1;
-	ray_data->dir[1] = 0;	
 }
