@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 13:07:01 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/25 13:36:44 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 11:14:17 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,4 @@ void	ft_error_data(char **line_split, t_data *data, char *data_str)
 	}
 	if (data_str != NULL)
 		ft_error_msg_perso("Duplicate Data", data);
-}
-
-int	ft_close_window(t_tab *ar_s)
-{
-	ft_close(1, &(ar_s->data));
-	return (1);
 }

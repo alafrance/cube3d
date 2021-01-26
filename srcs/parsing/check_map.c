@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:59:04 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/20 14:47:43 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 13:37:50 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,8 @@ void	ft_check_hole_in_wall(char **map, int i, int j, t_data *data)
 {
 	if (i < 0 || j < 0 || i >= ft_strslen(map) ||
 		j >= (int)ft_strlen(map[i]) || map[i][j] == ' ')
-	{
-		free_all(map, ft_strslen(map));
 		ft_error_msg_perso("Hole in Map", data);
-	}
-	if (map[i][j] == '1')
-		map[i][j] = 'W';
-	else if (map[i][j] == '0' || map[i][j] == '2')
+	if (map[i][j] == '0' || map[i][j] == '2')
 	{
 		map[i][j] = 'c';
 		ft_check_hole_in_wall(map, i - 1, j, data);

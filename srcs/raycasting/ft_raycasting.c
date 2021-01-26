@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:46:25 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/25 16:58:27 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 16:08:47 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@ void ft_display_raycasting(t_data data)
 	ft_init_window(&window, data);
 	ft_raycasting(data, &ray_data, window);
 	mlx_put_image_to_window(window.mlx, window.mlx_win, window.img.img, 0, 0);
-	ar_s.ray_data = ray_data;
-	ar_s.data = data;
-	ar_s.window = window;
+	init_tab_ar_s(&ar_s, ray_data, data, window);
 	mlx_hook(window.mlx_win, 2, 1L<<0, ft_event_pressed, &ar_s);
 	mlx_hook(window.mlx_win, 3, 1L<<1, ft_event_released, &ar_s);
 	mlx_hook(window.mlx_win, 17, 0L, ft_close_window, &ar_s);
+	mlx_loop_hook(window.mlx, ft_loop_hook, &ar_s);
 	mlx_loop(window.mlx);
 }
 
@@ -67,4 +66,13 @@ void init_ray_data_after(t_data data, t_ray *ray_data)
 	ray_data->map[0] = data.pos_player[0];
 	ray_data->map[1] = data.pos_player[1];
 	ray_data->is_hit = 0;
+}
+
+void	init_tab_ar_s(t_tab *ar_s, t_ray ray_data, t_data data, t_window window)
+{
+	ar_s->ray_data = ray_data;
+	ar_s->data = data;
+	ar_s->window = window;
+	ar_s->is_pressed = 0;
+	ar_s->key_pressed = -1;
 }

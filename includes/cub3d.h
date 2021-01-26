@@ -43,7 +43,7 @@ typedef struct	s_ray {
 
 typedef struct  s_img {
 	void        *img;
-	char        *addr;
+	int        *addr;
 	int         bits_per_pixel;
 	int         line_length;
 	int         endian;
@@ -61,6 +61,7 @@ typedef struct	s_tab
 	t_data data;
 	t_window window;
 	int		is_pressed;
+	int		key_pressed;
 }				t_tab;
 
 void			ft_parsing(int fd, t_data *data);
@@ -112,7 +113,13 @@ int				change_color_in_hexa(char *color);
 int				ft_event_pressed(int keycode, t_tab *ar_s);
 int				ft_event_released(int keycode, t_tab *ar_s);
 int				ft_close_window(t_tab *ar_s);
-void			ft_refresh(t_tab *ar_s);
-void			move(t_tab *ar_s, int moveSpeed, char op);
-void			rotate(t_tab *ar_s, int rotSpeed);
+void			ft_move(t_tab *ar_s, int afterPosX, int afterPosY);
+int				ft_loop_hook(t_tab *ar_s);
+void			ft_move_up(t_tab *ar_s, double moveSpeed);
+void			ft_move_down(t_tab *ar_s, double moveSpeed);
+void			ft_rotate(t_tab *ar_s, double rotSpeed);
+void			ft_rotate_left(t_tab *ar_s, double rotSpeed);
+void			ft_rotate_right(t_tab *ar_s, double rotSpeed);
+void			init_tab_ar_s(t_tab *ar_s, t_ray ray_data, t_data data
+								, t_window window);
 #endif
