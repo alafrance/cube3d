@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:08:42 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/26 15:24:59 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/28 15:58:08 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,9 @@ void	ft_rotate_right(t_tab *ar_s, double rotSpeed)
 void	ft_rotate(t_tab *ar_s, double  rotSpeed)
 {
 	double oldDir = ar_s->ray_data.dir[0];
-    double oldPlane = ar_s->ray_data.plane[0];
-	
-	// printf("before: dirX: %f, dirY: %f, planeX: %f, planeY: %f\n", ar_s->ray_data.dir[0], ar_s->ray_data.dir[1], ar_s->ray_data.plane[0], ar_s->ray_data.plane[1]);
+
     ar_s->ray_data.dir[0] =  ar_s->ray_data.dir[0] * cos(rotSpeed) -  ar_s->ray_data.dir[1] * sin(rotSpeed);
 	ar_s->ray_data.dir[1] = oldDir * sin(rotSpeed) + ar_s->ray_data.dir[1] * cos(rotSpeed);
-	ar_s->ray_data.plane[0] = ar_s->ray_data.plane[0] * cos(rotSpeed) - ar_s->ray_data.plane[1] * sin(rotSpeed);
-	ar_s->ray_data.plane[1] = oldPlane * sin(rotSpeed) + ar_s->ray_data.plane[1] * cos(rotSpeed);
-	// printf("after: dirX: %f, dirY: %f, planeX: %f, planeY: %f\n", ar_s->ray_data.dir[0], ar_s->ray_data.dir[1], ar_s->ray_data.plane[0], ar_s->ray_data.plane[1]);
+	ar_s->ray_data.plane[0] = ar_s->ray_data.dir[1] * 0.66;
+	ar_s->ray_data.plane[1] = -ar_s->ray_data.dir[0] * 0.66;
 }

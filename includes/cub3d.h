@@ -2,6 +2,14 @@
 # define CUB3D_H
 # define true 1
 # define false 1
+#define KEY_UP 126
+#define KEY_DOWN 125
+#define KEY_LEFT 124
+#define KEY_RIGHT 123
+#define KEY_W 13
+#define KEY_A 0
+#define KEY_S 1
+#define KEY_D 2
 # include "../minilibx/mlx.h"
 # include "../libft/libft.h"
 # include <fcntl.h>
@@ -20,7 +28,7 @@ typedef struct	s_data
 	char		**map;
 	char		*color_floor;
 	char		*color_roof;
-	int			pos_player[2];
+	double		pos_player[2];
 	char		pos_camera;
 	int			w_max;
 	int			h_max;
@@ -43,10 +51,12 @@ typedef struct	s_ray {
 
 typedef struct  s_img {
 	void        *img;
-	int        *addr;
+	int			*addr;
 	int         bits_per_pixel;
 	int         line_length;
 	int         endian;
+	int			width;
+	int			height;
 }               t_img;
 
 typedef struct s_window {
@@ -104,19 +114,22 @@ void			init_step_and_eucli_dist(t_data data, t_ray *ray_data);
 void			caculate_deltaDist(t_ray *ray_data);
 void			calculate_max_map(t_data *data);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
+// void			ft_display_column(t_window window, t_ray ray_data, t_data data, int column);
 void			ft_display_column(t_window window, t_ray ray_data, t_data data, int column);
 void			ft_init_window(t_window *window, t_data data);
-void			ft_display_raycasting(t_data data);
-void			init_ray_data_before(t_ray *ray_data);
+void			ft_refresh_raycasting(t_tab *ar_struct);
+void			init_ray_data_before(t_ray *ray_data, t_data data);
 void			init_ray_data_after(t_data data, t_ray *ray_data);
 int				change_color_in_hexa(char *color);
 int				ft_event_pressed(int keycode, t_tab *ar_s);
 int				ft_event_released(int keycode, t_tab *ar_s);
 int				ft_close_window(t_tab *ar_s);
-void			ft_move(t_tab *ar_s, int afterPosX, int afterPosY);
+void			ft_move(t_tab *ar_s, double afterPosX, double afterPosY);
 int				ft_loop_hook(t_tab *ar_s);
 void			ft_move_up(t_tab *ar_s, double moveSpeed);
 void			ft_move_down(t_tab *ar_s, double moveSpeed);
+void			ft_move_left(t_tab	*ar_s, double moveSpeed);
+void			ft_move_right(t_tab *ar_s, double moveSpeed);
 void			ft_rotate(t_tab *ar_s, double rotSpeed);
 void			ft_rotate_left(t_tab *ar_s, double rotSpeed);
 void			ft_rotate_right(t_tab *ar_s, double rotSpeed);

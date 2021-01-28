@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:58:45 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/26 17:55:33 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/28 15:58:28 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,57 +29,31 @@ void	init_data(t_data *data)
 	data->pos_camera = 0;
 }
 
-// int main(int ac, char **av)
-// {
-//     t_data  data;
-//     int     fd;
-// 	init_data(&data);
-//     if (ac != 2)
-//          return (ft_error_msg(22, &data));
-//     fd = open(av[1], O_RDWR);
-//     if (fd <= 0 || !ft_is_format(av[1], ".cub"))
-//         return (ft_error_msg(22, &data));
-//     ft_parsing(fd, &data);
-// 	ft_display_raycasting(data);
-// 	free_struct(&data);
-// 	close(fd);
-// 	return (1);
-// }
-
-
-typedef struct  s_data_img {
-    void        *img;
-    int         *addr;
-    int         bits_per_pixel;
-    int         size_line;
-    int         endian;
-	int			width;
-	int			height;
-}               t_data_img;
-
-int main()
+int main(int ac, char **av)
 {
-	void *mlx;
-	void *mlx_win;
-	t_data data;
-	int i;
-	
-	i = 0;
-	data.resolution[0] = 1920;
-	data.resolution[0] = 1080;
-	window.mlx = mlx_init();
-	mlx_new_window(mlx, 1920, 1080, "coucou");
-	img.img = mlx_xpm_file_to_image (mlx, "textures/brown_b.xpm", &(img.width), &(img.height));
-	img.addr = (int*)mlx_get_data_addr (img.img, &(img.bits_per_pixel), &(img.size_line),&(img.endian));
-	printf("%d\n", img.addr[100]);
-	while (i != 1080)
-	{
-		ft_display_column()
-	}
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+    t_data  data;
+    int     fd;
+	t_ray ray_data;
+	t_window window;
+	t_tab ar_s;
+
+	init_data(&data);
+    if (ac != 2)
+         return (ft_error_msg(22, &data));
+    fd = open(av[1], O_RDWR);
+    if (fd <= 0 || !ft_is_format(av[1], ".cub"))
+        return (ft_error_msg(22, &data));
+    ft_parsing(fd, &data);
+	ft_init_window(&window, data);
+	init_ray_data_before(&ray_data, data);
+	init_tab_ar_s(&ar_s, ray_data, data, window);
+	ft_refresh_raycasting(&ar_s);
+	mlx_hook(window.mlx_win, 2, 0, ft_event_pressed, &ar_s);
+	mlx_hook(window.mlx_win, 3, 0, ft_event_released, &ar_s);
+	mlx_hook(window.mlx_win, 17, 0L, ft_close_window, &ar_s);
+	mlx_loop_hook(window.mlx, ft_loop_hook, &ar_s);
+	mlx_loop(window.mlx);
+	close(fd);
+	free_struct(&data);
+	return (1);
 }
-/* PRINT TEXTURE
-RAPPORT TAILLE 
-calcul float
-*/

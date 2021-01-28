@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:02:11 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/26 17:55:02 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/28 17:06:12 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 void	ft_init_window(t_window *window, t_data data)
 {
 	window->mlx = mlx_init();
-	window->mlx_win = mlx_new_window(window->mlx, data.resolution[0]
-					, data.resolution[1], "CUB3D");
+	window->mlx_win = mlx_new_window(window->mlx, data.resolution[0], data.resolution[1], "CUB3D");
 	window->img.img = mlx_new_image(window->mlx, data.resolution[0],
 					data.resolution[1]);
 	window->img.addr = (int*)mlx_get_data_addr(window->img.img, 
@@ -24,14 +23,6 @@ void	ft_init_window(t_window *window, t_data data)
 										&(window->img.line_length),
 										&(window->img.endian));
 }
-
-// void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
-// {
-// 	char    *dst;
-
-// 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-// 	*(unsigned int*)dst = color;
-// }
 
 int	change_color_in_hexa(char *color)
 {
@@ -44,23 +35,32 @@ int	change_color_in_hexa(char *color)
 	return (h_color);	
 }
 
-// void	ft_display_column(t_window window, t_ray ray_data, t_data data, int column)
-void	ft_display_column(t_data data, int column)
+void	ft_display_column(t_window window, t_ray ray_data, t_data data, int column)
 {
-	int i;
+	long color_floor;
+	long color_roof;
+	t_img texture;
 
-	i = column;
-	// printf("%d\n", i);
-	// window->img.addr[i] = 0xFF00FF;
-	// while (i < ray_data.draw[0])
-		// my_mlx_pixel_put(&window.img, column, i++, change_color_in_hexa(data.color_roof));
-	while (i < data.resolution[1] * data.resolution[0])
+	(void)texture;
+	// texture.img = mlx_xpm_file_to_image(window.mlx, data.path_ntexture, &(texture.width), &(texture.height));
+	// texture.addr = (int*)mlx_get_data_addr(texture.img, &(texture.bits_per_pixel), &(texture.line_length), &(texture.endian));
+	color_floor = change_color_in_hexa(data.color_floor);
+	color_roof = change_color_in_hexa(data.color_roof);
+	while (column < ray_data.draw[0] * data.resolution[0])
 	{
-		window.img.addr[i] = 0xFF00000;
-		i += data.resolution[0];
+		window.img.addr[column] = color_floor;
+		column += data.resolution[0];
 	}
-	// while (i < data.resolution[1])
-		// my_mlx_pixel_put(&window.img, column, i++, change_color_in_hexa(data.color_floor));
+	while (column <= data.resolution[0] * ray_data.draw[1])
+	{
+		window.img.addr[column] = 0xFF0000;
+		column += data.resolution[0];
+	}
+	while (column < data.resolution[0] * data.resolution[1])
+	{
+		window.img.addr[column] = color_roof;
+		column += data.resolution[0];
+	}
 }
 
 int		ft_close_window(t_tab *ar_s)

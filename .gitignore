@@ -1,3 +1,6 @@
 .idea
 a.out
 cub3d
+*.o
+*.a
+*.dylib

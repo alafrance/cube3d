@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 13:28:06 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/25 10:38:52 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/28 15:58:59 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_ray	calculate_distance(t_data data, t_ray ray_data, int i)
 {
 	double cameraX;
 
-	cameraX = 2 * i / (double)data.resolution[1] - 1;
+	cameraX = 2 * i / (double)data.resolution[0] - 1;
 	ray_data.rayDir[0] = ray_data.dir[0] + ray_data.plane[0] * cameraX;
 	ray_data.rayDir[1] = ray_data.dir[1] + ray_data.plane[1] * cameraX;
 	ray_data.deltaDist[0] = (ray_data.rayDir[1] == 0) ? 0 :
@@ -28,11 +28,16 @@ t_ray	calculate_distance(t_data data, t_ray ray_data, int i)
 	init_step_and_eucli_dist(data, &ray_data);
 	until_wall_is_hit(data, &ray_data);
 	if (ray_data.side == 0)
+	{
 		ray_data.dist = (ray_data.map[0] - data.pos_player[0] + 
 						(1 - ray_data.step[0]) / 2) / ray_data.rayDir[0];
+	}
 	else
+	{
 		ray_data.dist = (ray_data.map[1] - data.pos_player[1] + 
 						(1 - ray_data.step[1]) / 2) / ray_data.rayDir[1];
+		
+	}
 	return (ray_data);
 }
 
@@ -48,15 +53,13 @@ void init_step_and_eucli_dist(t_data data, t_ray *ray_data)
 		{
 			
 			ray_data->step[i] = -1;
-			ray_data->eucli_dist[i] = (data.pos_player[i] - ray_data->map[i]);
-			ray_data->eucli_dist[i] *= ray_data->deltaDist[i];
+			ray_data->eucli_dist[i] = (data.pos_player[i] - ray_data->map[i]) * ray_data->deltaDist[i];
 		}
 		else
 		{
 			ray_data->step[i] = 1;
-			ray_data->eucli_dist[i] = ray_data->map[i] + 1.0 
-									- data.pos_player[i];
-			ray_data->eucli_dist[i] *= ray_data->deltaDist[i];
+			ray_data->eucli_dist[i] = (ray_data->map[i] + 1.0 
+									- data.pos_player[i]) * ray_data->deltaDist[i];
 		}
 	}
 }
