@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:46:25 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/28 17:19:07 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/29 13:59:55 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ void	ft_raycasting(t_data data, t_ray *ray_data, t_window window)
 			ray_data->draw[1] = data.resolution[1] - 1;
 		ft_display_column(window, *ray_data, data, column);
 	}
+	ft_print_struct(*ray_data);
 }
 
+void	ft_calculate_texture(t_data data, t_ray *ray_data)
 void	init_ray_data_before(t_ray *ray_data, t_data data)
 {
 	data.map[(int)data.pos_player[0]][(int)data.pos_player[1]] = '0';

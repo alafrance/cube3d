@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:02:11 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/28 17:06:12 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/29 13:52:29 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,14 @@ void	ft_display_column(t_window window, t_ray ray_data, t_data data, int column)
 	}
 	while (column <= data.resolution[0] * ray_data.draw[1])
 	{
-		window.img.addr[column] = 0xFF0000;
+		if (ray_data.rayDir[0] < 0 && ray_data.side == 0)
+			window.img.addr[column] = 0xFF0000;
+		else if (ray_data.rayDir[0] > 0 && ray_data.side == 0)
+			window.img.addr[column] = 0x00FF00;
+		else if (ray_data.rayDir[1] > 0 && ray_data.side == 1)
+			window.img.addr[column] = 0xFFFFFF;
+		else if (ray_data.rayDir[1] < 0 && ray_data.side == 1)
+			window.img.addr[column] = 0x0000FF;
 		column += data.resolution[0];
 	}
 	while (column < data.resolution[0] * data.resolution[1])
