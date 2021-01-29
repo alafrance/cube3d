@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:23:23 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/28 17:04:56 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/29 15:38:00 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	ft_event_pressed(int keycode, t_tab *ar_s)
 		ft_close_window(ar_s);
 	else
 		return (0);
-	ar_s->is_pressed = 1;
 	return (1);
 }
 
@@ -54,21 +53,20 @@ int ft_loop_hook(t_tab *ar_s)
 	double	moveSpeed;
 
 	moveSpeed = 0.05;
-	if (ar_s->is_pressed)
-	{
-		if	(ar_s->key_pressed == KEY_W)
-			ft_move_up(ar_s, moveSpeed);
-		if	(ar_s->key_pressed == KEY_S)
+	if	(ar_s->key_pressed == KEY_W)
+		ft_move_up(ar_s, moveSpeed);
+	else if	(ar_s->key_pressed == KEY_S)
 			ft_move_down(ar_s, moveSpeed);
-		if	(ar_s->key_pressed == KEY_D)
-			ft_move_left(ar_s, moveSpeed);
-		if	(ar_s->key_pressed == KEY_A)
-			ft_move_right(ar_s, moveSpeed);
-		if	(ar_s->key_pressed == KEY_LEFT)
-			ft_rotate_left(ar_s, moveSpeed);
-		if	(ar_s->key_pressed == KEY_RIGHT)
-			ft_rotate_right(ar_s, moveSpeed);			
-		ft_refresh_raycasting(ar_s);
-	}
+	else if	(ar_s->key_pressed == KEY_D)
+		ft_move_left(ar_s, moveSpeed);
+	else if	(ar_s->key_pressed == KEY_A)
+		ft_move_right(ar_s, moveSpeed);
+	else if	(ar_s->key_pressed == KEY_LEFT)
+		ft_rotate_left(ar_s, moveSpeed);
+	else if	(ar_s->key_pressed == KEY_RIGHT)
+		ft_rotate_right(ar_s, moveSpeed);
+	else
+		return (0);
+	ft_refresh_raycasting(ar_s);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:46:25 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/29 13:59:55 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/29 16:02:07 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	ft_raycasting(t_data data, t_ray *ray_data, t_window window)
 	int column;
 
 	column = -1;
-	while (++column <= data.resolution[0])
-	{
+	// while (++column < data.resolution[0])
+	// {
 		init_ray_data_after(data, ray_data);
 		*ray_data = calculate_distance(data, *ray_data, column);
 		if ((int)ray_data->dist == 0)
@@ -33,17 +33,13 @@ void	ft_raycasting(t_data data, t_ray *ray_data, t_window window)
 		else
 			ray_data->h_wall = (int)(data.resolution[1] / ray_data->dist);
 		ray_data->draw[0] = -ray_data->h_wall / 2 + data.resolution[1] / 2;
-		if (ray_data->draw[0] < 0)
-			ray_data->draw[0] = 0;
-		ray_data->draw[1] = ray_data->h_wall / 2 + data.resolution[1] / 2;
-		if (ray_data->draw[1] >= data.resolution[1])
-			ray_data->draw[1] = data.resolution[1] - 1;
+		ft_calculate_texture(data, ray_data, window.texture);
 		ft_display_column(window, *ray_data, data, column);
-	}
+	// }
 	ft_print_struct(*ray_data);
 }
 
-void	ft_calculate_texture(t_data data, t_ray *ray_data)
+
 void	init_ray_data_before(t_ray *ray_data, t_data data)
 {
 	data.map[(int)data.pos_player[0]][(int)data.pos_player[1]] = '0';
@@ -65,6 +61,7 @@ void	init_ray_data_before(t_ray *ray_data, t_data data)
 		ray_data->dir[1] = -1;
 		ray_data->plane[0] = -0.66;
 		ray_data->plane[1] = 0;
+		
 	}
 	else if (data.pos_camera == 'E')
 	{

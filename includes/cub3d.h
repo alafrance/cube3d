@@ -47,6 +47,11 @@ typedef struct	s_ray {
 	double		plane[2];
 	int			h_wall;
 	int			draw[2];
+	int			texNum;
+	double		wallX;
+	int			texX;
+	double		step_tex;
+	double		texPos;
 }				t_ray;
 
 typedef struct  s_img {
@@ -63,6 +68,7 @@ typedef struct s_window {
 	void *mlx;
 	void *mlx_win;
 	t_img img;
+	t_img texture;
 }				t_window;
 
 typedef struct	s_tab
@@ -135,4 +141,5 @@ void			ft_rotate_left(t_tab *ar_s, double rotSpeed);
 void			ft_rotate_right(t_tab *ar_s, double rotSpeed);
 void			init_tab_ar_s(t_tab *ar_s, t_ray ray_data, t_data data
 								, t_window window);
+void			ft_calculate_texture(t_data data, t_ray *ray_data, t_img texture);
 #endif

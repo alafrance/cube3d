@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:02:11 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/29 13:52:29 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/29 15:57:22 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	ft_init_window(t_window *window, t_data data)
 										&(window->img.bits_per_pixel),
 										&(window->img.line_length),
 										&(window->img.endian));
+	window->texture.img = mlx_xpm_file_to_image(window->mlx, data.path_ntexture, &(window->texture.width), &(window->texture.height));
+	window->texture.addr = (int*)mlx_get_data_addr(window->texture.img, &(window->texture.bits_per_pixel), &(window->texture.line_length),
+										&(window->texture.endian));
 }
 
 int	change_color_in_hexa(char *color)
@@ -39,11 +42,7 @@ void	ft_display_column(t_window window, t_ray ray_data, t_data data, int column)
 {
 	long color_floor;
 	long color_roof;
-	t_img texture;
 
-	(void)texture;
-	// texture.img = mlx_xpm_file_to_image(window.mlx, data.path_ntexture, &(texture.width), &(texture.height));
-	// texture.addr = (int*)mlx_get_data_addr(texture.img, &(texture.bits_per_pixel), &(texture.line_length), &(texture.endian));
 	color_floor = change_color_in_hexa(data.color_floor);
 	color_roof = change_color_in_hexa(data.color_roof);
 	while (column < ray_data.draw[0] * data.resolution[0])
@@ -53,13 +52,13 @@ void	ft_display_column(t_window window, t_ray ray_data, t_data data, int column)
 	}
 	while (column <= data.resolution[0] * ray_data.draw[1])
 	{
-		if (ray_data.rayDir[0] < 0 && ray_data.side == 0)
-			window.img.addr[column] = 0xFF0000;
-		else if (ray_data.rayDir[0] > 0 && ray_data.side == 0)
+		if (ray_data.rayDir[0] < 0 && ray_data.side == 0) // N
+			window.img.addr[column] = window.texture.addr[0];
+		else if (ray_data.rayDir[0] > 0 && ray_data.side == 0) // S
 			window.img.addr[column] = 0x00FF00;
-		else if (ray_data.rayDir[1] > 0 && ray_data.side == 1)
+		else if (ray_data.rayDir[1] > 0 && ray_data.side == 1) // E
 			window.img.addr[column] = 0xFFFFFF;
-		else if (ray_data.rayDir[1] < 0 && ray_data.side == 1)
+		else if (ray_data.rayDir[1] < 0 && ray_data.side == 1) // W
 			window.img.addr[column] = 0x0000FF;
 		column += data.resolution[0];
 	}

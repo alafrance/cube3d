@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:54:45 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/21 22:48:58 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/01/29 16:05:21 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,6 @@ void	ft_print_struct(t_ray data)
 	printf("dirX: %f, dirY: %f\n", data.dir[0], data.dir[1]);
 	printf("side: %d\n", data.side);
 	printf("h_wall: %d\n", data.h_wall);
+	printf("drawS: %d, drawE: %d\n", data.draw[0], data.draw[1]);
+	printf("texture: texNum: %d, WallX: %f, TexX: %d, StepTex: %f, TexPos: %f\n", data.texNum, data.wallX, data.texX, data.step_tex, data.texPos);
 }
