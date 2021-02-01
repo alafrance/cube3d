@@ -47,11 +47,8 @@ typedef struct	s_ray {
 	double		plane[2];
 	int			h_wall;
 	int			draw[2];
-	int			texNum;
-	double		wallX;
-	int			texX;
-	double		step_tex;
-	double		texPos;
+	double		step_tex_x;
+	double		step_tex_y;
 }				t_ray;
 
 typedef struct  s_img {
@@ -120,8 +117,7 @@ void			init_step_and_eucli_dist(t_data data, t_ray *ray_data);
 void			caculate_deltaDist(t_ray *ray_data);
 void			calculate_max_map(t_data *data);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
-// void			ft_display_column(t_window window, t_ray ray_data, t_data data, int column);
-void			ft_display_column(t_window window, t_ray ray_data, t_data data, int column);
+void			ft_display_column(t_window window, t_ray *ray_data, t_data data, int column);
 void			ft_init_window(t_window *window, t_data data);
 void			ft_refresh_raycasting(t_tab *ar_struct);
 void			init_ray_data_before(t_ray *ray_data, t_data data);

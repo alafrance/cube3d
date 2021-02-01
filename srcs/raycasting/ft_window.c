@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:02:11 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/29 15:57:22 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/01 19:34:40 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,29 @@ int	change_color_in_hexa(char *color)
 	return (h_color);	
 }
 
-void	ft_display_column(t_window window, t_ray ray_data, t_data data, int column)
+void	ft_display_column(t_window window, t_ray *ray_data, t_data data, int column)
 {
 	long color_floor;
 	long color_roof;
+	int i;
 
 	color_floor = change_color_in_hexa(data.color_floor);
 	color_roof = change_color_in_hexa(data.color_roof);
-	while (column < ray_data.draw[0] * data.resolution[0])
+	if (ray_data->step_tex_x >= window.texture.width)
+		ray_data->step_tex_x = 0;
+	i = ray_data->step_tex_x;
+	while (column < ray_data->draw[0] * data.resolution[0])
 	{
 		window.img.addr[column] = color_floor;
 		column += data.resolution[0];
 	}
-	while (column <= data.resolution[0] * ray_data.draw[1])
+	while (column <= data.resolution[0] * ray_data->draw[1])
 	{
-		if (ray_data.rayDir[0] < 0 && ray_data.side == 0) // N
-			window.img.addr[column] = window.texture.addr[0];
-		else if (ray_data.rayDir[0] > 0 && ray_data.side == 0) // S
-			window.img.addr[column] = 0x00FF00;
-		else if (ray_data.rayDir[1] > 0 && ray_data.side == 1) // E
-			window.img.addr[column] = 0xFFFFFF;
-		else if (ray_data.rayDir[1] < 0 && ray_data.side == 1) // W
-			window.img.addr[column] = 0x0000FF;
+		window.img.addr[column] = window.texture.addr[i];
+		if (i >= window.texture.height)
+			i = 0;
+		else
+			i += window.texture.height;	
 		column += data.resolution[0];
 	}
 	while (column < data.resolution[0] * data.resolution[1])
@@ -67,6 +68,7 @@ void	ft_display_column(t_window window, t_ray ray_data, t_data data, int column)
 		window.img.addr[column] = color_roof;
 		column += data.resolution[0];
 	}
+	ray_data->step_tex_x++;
 }
 
 int		ft_close_window(t_tab *ar_s)
@@ -75,3 +77,11 @@ int		ft_close_window(t_tab *ar_s)
 	return (1);
 }
 
+		// if (ray_data->rayDir[0] < 0 && ray_data->side == 0) // N
+		// 	window.img.addr[column] = window.texture.addr[0];
+		// else if (ray_data->rayDir[0] > 0 && ray_data->side == 0) // S
+		// 	window.img.addr[column] = 0x00FF00;
+		// else if (ray_data->rayDir[1] > 0 && ray_data->side == 1) // E
+		// 	window.img.addr[column] = 0xFFFFFF;
+		// else if (ray_data->rayDir[1] < 0 && ray_data->side == 1) // W
+		// 	window.img.addr[column] = 0x0000FF;

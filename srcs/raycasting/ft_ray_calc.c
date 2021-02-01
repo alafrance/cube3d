@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 13:28:06 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/29 16:05:40 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/01 19:26:26 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,25 +83,3 @@ void	until_wall_is_hit(t_data data, t_ray *ray_data)
 			ray_data->is_hit = 1;
 	}
 }
-
-void	ft_calculate_texture(t_data data, t_ray *ray_data, t_img texture)
-{
-	if (ray_data->draw[0] < 0)
-		ray_data->draw[0] = 0;
-	ray_data->draw[1] = ray_data->h_wall / 2 + data.resolution[1] / 2;
-	if (ray_data->draw[1] >= data.resolution[1])
-		ray_data->draw[1] = data.resolution[1] - 1;
-	ray_data->texNum = data.map[ray_data->map[0]][ray_data->map[1]] - 1;
-	if (!ray_data->side)
-		ray_data->wallX = data.pos_player[1] + ray_data->dist * ray_data->rayDir[1];
-	else
-		ray_data->wallX = data.pos_player[0] + ray_data->dist * ray_data->rayDir[0];
-	// printf("wallX: %f\n", ray_data->wallX);
-	ray_data->wallX -= floor(ray_data->wallX);
-	ray_data->texX = (int)(ray_data->wallX * (double)texture.width);
-	if ((!ray_data->side && ray_data->rayDir[0] > 0) || (ray_data->side && ray_data->rayDir[1] < 0))
-		ray_data->texX = texture.width - ray_data->texX - 1;
-	ray_data->step_tex = 1.0 * texture.height / ray_data->h_wall;
-	ray_data->texPos = (ray_data->draw[0] - data.resolution[1] / 2 + ray_data->h_wall / 2) * ray_data->step_tex;
-}
-
