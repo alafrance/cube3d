@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:54:45 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/01 19:20:41 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 17:47:21 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_print_strs(char **strs)
 		ft_printf("%s\n", strs[i++]);
 }
 
-void	ft_print_struct(t_ray data)
+void	ft_print_struct(t_ray data, t_data data_map)
 {
 	printf("stepX: %d, stepY: %d\n", data.step[0], data.step[1]);
 	printf("mapX: %d, mapY: %d\n", data.map[0], data.map[1]);
@@ -34,4 +34,7 @@ void	ft_print_struct(t_ray data)
 	printf("side: %d\n", data.side);
 	printf("h_wall: %d\n", data.h_wall);
 	printf("drawS: %d, drawE: %d\n", data.draw[0], data.draw[1]);
+	printf("steptex: %f, wallx: %f\n", data.step_tex, data.wallx);
+	printf("texx: %d, texy: %d, texpos: %f\n", data.texx, data.texy, data.texpos);
+	printf("posPlayer[0]: %f, posPlayer[1]: %f\n", data_map.pos_player[0], data_map.pos_player[1]);
 }

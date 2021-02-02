@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:46:25 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/01 19:26:19 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 17:46:14 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,40 @@ void	ft_raycasting(t_data data, t_ray *ray_data, t_window window)
 		ray_data->draw[1] = ray_data->h_wall / 2 + data.resolution[1] / 2;
 		if (ray_data->draw[1] >= data.resolution[1])
 			ray_data->draw[1] = data.resolution[1] - 1;
+		if (ray_data->rayDir[0] < 0 && ray_data->side == 0)
+			window.texture_used = &window.n_texture;
+		else if (ray_data->rayDir[0] > 0 && ray_data->side == 0)
+			window.texture_used = &window.s_texture;
+		else if (ray_data->rayDir[1] > 0 && ray_data->side == 1)
+			window.texture_used = &window.e_texture;
+		else if (ray_data->rayDir[1] < 0 && ray_data->side == 1)
+			window.texture_used = &window.w_texture;
+		ft_calculate_texture(ray_data, *window.texture_used, data);
 		ft_display_column(window, ray_data, data, column);
 	}
-	// ft_print_struct(*ray_data);
+	ft_print_struct(*ray_data, data);
 }
 
 
 void	init_ray_data_before(t_ray *ray_data, t_data data)
 {
 	data.map[(int)data.pos_player[0]][(int)data.pos_player[1]] = '0';
-	ray_data->plane[0] = 0;
-	ray_data->plane[1] = 0.66;
+
 	ray_data->step_tex_x = 0;
 	ray_data->step_tex_y = 0;
 	if (data.pos_camera == 'N')
 	{
 		ray_data->dir[0] = -1;
 		ray_data->dir[1] = 0;
+		ray_data->plane[0] = 0;
+		ray_data->plane[1] = 0.66;
 	}
 	else if (data.pos_camera == 'S')
 	{
 		ray_data->dir[0] = 1;
 		ray_data->dir[1] = 0;
+		ray_data->plane[0] = 0;
+		ray_data->plane[1] = -0.66;
 	}
 	else if (data.pos_camera == 'W')
 	{

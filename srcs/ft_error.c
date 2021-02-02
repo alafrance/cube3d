@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 13:07:01 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/26 11:14:17 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 11:03:16 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ void	miss_element(t_data *data)
 	ft_close(0, data);
 }
 
-int		ft_error_msg(int errnum, t_data *data)
+int	ft_error_msg(int errnum, t_data *data)
 {
 	ft_printf("Error\n%s\n", strerror(errnum));
 	ft_close(0, data);
 	return (0);
 }
 
-int		ft_error_msg_perso(char *error_msg, t_data *data)
+int	ft_error_msg_perso(char *error_msg, t_data *data)
 {
 	ft_printf("Error\n%s\n", error_msg);
 	ft_close(0, data);

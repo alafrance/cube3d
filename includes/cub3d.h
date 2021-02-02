@@ -49,6 +49,11 @@ typedef struct	s_ray {
 	int			draw[2];
 	double		step_tex_x;
 	double		step_tex_y;
+	double		wallx;
+	int			texx;
+	int			texy;
+	double		step_tex;
+	double		texpos;
 }				t_ray;
 
 typedef struct  s_img {
@@ -62,20 +67,39 @@ typedef struct  s_img {
 }               t_img;
 
 typedef struct s_window {
-	void *mlx;
-	void *mlx_win;
-	t_img img;
-	t_img texture;
+	void		*mlx;
+	void		*mlx_win;
+	t_img		img;
+	t_img		n_texture;
+	t_img		s_texture;
+	t_img		e_texture;
+	t_img		w_texture;
+	t_img		*texture_used;
 }				t_window;
+
+typedef struct	s_key
+{
+	int			key_w;
+	int			key_s;
+	int			key_d;
+	int			key_a;
+	int			key_up;
+	int			key_down;
+	int			key_left;
+	int			key_right;
+}				t_key;
 
 typedef struct	s_tab
 {
 	t_ray ray_data;
 	t_data data;
 	t_window window;
+	t_key	key;
 	int		is_pressed;
 	int		key_pressed;
 }				t_tab;
+
+
 
 void			ft_parsing(int fd, t_data *data);
 int				fill_struct_parsing(char *line, t_data *data);
@@ -105,7 +129,7 @@ int				is_only_num_and_comma(char *str);
 void			ft_error_data(char **line_split, t_data *data, char *data_str);
 int				ft_is_number_str(char *str);
 void			ft_print_strs(char **strs);
-void			ft_print_struct(t_ray data);
+void			ft_print_struct(t_ray data, t_data data_map);
 void			ft_check_map(t_data *data);
 void			ft_check_map_characters_and_pos(char **map, t_data *data);
 void			ft_check_hole_in_wall(char **map, int i, int j, t_data *data);
@@ -137,5 +161,6 @@ void			ft_rotate_left(t_tab *ar_s, double rotSpeed);
 void			ft_rotate_right(t_tab *ar_s, double rotSpeed);
 void			init_tab_ar_s(t_tab *ar_s, t_ray ray_data, t_data data
 								, t_window window);
-void			ft_calculate_texture(t_data data, t_ray *ray_data, t_img texture);
+void			ft_calculate_texture(t_ray *ray_data, t_img texture, t_data data);
+void			ft_open_texture(t_img *texture, void *mlx, char *path_texture);
 #endif

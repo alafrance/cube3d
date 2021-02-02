@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 16:54:25 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/28 17:18:05 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 17:44:54 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_move(t_tab *ar_s, double afterPosX, double afterPosY)
 {
-	if (ar_s->data.map[(int)afterPosX][(int)ar_s->data.pos_player[1]] != '1')
+	if (ar_s->data.map[(int)afterPosX][(int)ar_s->data.pos_player[1] + 1] != '1')
 		ar_s->data.pos_player[0] = afterPosX;
 	if (ar_s->data.map[(int)ar_s->data.pos_player[0]][(int)afterPosY] != '1')
 		ar_s->data.pos_player[1] = afterPosY;

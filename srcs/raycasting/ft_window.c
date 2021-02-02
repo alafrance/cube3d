@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:02:11 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/01 19:34:40 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 17:33:23 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,17 @@ void	ft_init_window(t_window *window, t_data data)
 										&(window->img.bits_per_pixel),
 										&(window->img.line_length),
 										&(window->img.endian));
-	window->texture.img = mlx_xpm_file_to_image(window->mlx, data.path_ntexture, &(window->texture.width), &(window->texture.height));
-	window->texture.addr = (int*)mlx_get_data_addr(window->texture.img, &(window->texture.bits_per_pixel), &(window->texture.line_length),
-										&(window->texture.endian));
+	ft_open_texture(&window->n_texture, window->mlx, data.path_ntexture);
+	ft_open_texture(&window->s_texture, window->mlx, data.path_stexture);
+	ft_open_texture(&window->e_texture, window->mlx, data.path_etexture);
+	ft_open_texture(&window->w_texture, window->mlx, data.path_wtexture);
+}
+
+void ft_open_texture(t_img *texture, void *mlx, char *path_texture)
+{
+	texture->img = mlx_xpm_file_to_image(mlx, path_texture, &(texture->width), &(texture->height));
+	texture->addr = (int*)mlx_get_data_addr(texture->img, &(texture->bits_per_pixel), &(texture->line_length),
+										&(texture->endian));
 }
 
 int	change_color_in_hexa(char *color)
@@ -35,7 +43,7 @@ int	change_color_in_hexa(char *color)
 	color_split = ft_split(color, ',');
 	
 	h_color = ft_atoi(color_split[0]) * ft_power(16, 4) + ft_atoi(color_split[1]) * ft_power(16, 2) + ft_atoi(color_split[2]);
-	return (h_color);	
+	return (h_color);
 }
 
 void	ft_display_column(t_window window, t_ray *ray_data, t_data data, int column)
@@ -46,27 +54,29 @@ void	ft_display_column(t_window window, t_ray *ray_data, t_data data, int column
 
 	color_floor = change_color_in_hexa(data.color_floor);
 	color_roof = change_color_in_hexa(data.color_roof);
-	if (ray_data->step_tex_x >= window.texture.width)
-		ray_data->step_tex_x = 0;
-	i = ray_data->step_tex_x;
-	while (column < ray_data->draw[0] * data.resolution[0])
+	i = 0;
+	while (i < ray_data->draw[0])
 	{
 		window.img.addr[column] = color_floor;
 		column += data.resolution[0];
+		i++;
 	}
-	while (column <= data.resolution[0] * ray_data->draw[1])
+	while (i < ray_data->draw[1])
 	{
-		window.img.addr[column] = window.texture.addr[i];
-		if (i >= window.texture.height)
-			i = 0;
-		else
-			i += window.texture.height;	
+		ray_data->texy = (int)ray_data->texpos & (window.texture_used->height - 1);
+		ray_data->texpos += ray_data->step_tex;
+
+		window.img.addr[column] = window.texture_used->addr[
+								window.texture_used->height * ray_data->texy
+								+ ray_data->texx];
 		column += data.resolution[0];
+		i++;
 	}
-	while (column < data.resolution[0] * data.resolution[1])
+	while (i < data.resolution[1])
 	{
 		window.img.addr[column] = color_roof;
 		column += data.resolution[0];
+		i++;
 	}
 	ray_data->step_tex_x++;
 }
@@ -77,11 +87,3 @@ int		ft_close_window(t_tab *ar_s)
 	return (1);
 }
 
-		// if (ray_data->rayDir[0] < 0 && ray_data->side == 0) // N
-		// 	window.img.addr[column] = window.texture.addr[0];
-		// else if (ray_data->rayDir[0] > 0 && ray_data->side == 0) // S
-		// 	window.img.addr[column] = 0x00FF00;
-		// else if (ray_data->rayDir[1] > 0 && ray_data->side == 1) // E
-		// 	window.img.addr[column] = 0xFFFFFF;
-		// else if (ray_data->rayDir[1] < 0 && ray_data->side == 1) // W
-		// 	window.img.addr[column] = 0x0000FF;
