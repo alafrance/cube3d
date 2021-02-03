@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:46:25 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/03 14:27:17 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 15:08:17 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	ft_raycasting(t_data data, t_ray *ray_data, t_window window)
 {
 	int column;
 
-	(void)window;
-	(void)ray_data;
 	column = -1;
 	while (++column < data.resolution[0])
 	{
@@ -35,15 +33,12 @@ void	ft_raycasting(t_data data, t_ray *ray_data, t_window window)
 		ft_calculate_texture(ray_data, *window.texture_used, data);
 		ft_display_column(window, ray_data, data, column);
 	}
-	ft_print_struct(*ray_data, data);
+	// ft_print_struct(*ray_data, data);
 }
 
 void	ft_calculate_draw_marge(t_ray *ray_data, t_data data)
 {
-	if ((int)ray_data->dist == 0)
-		ray_data->h_wall = (int)data.resolution[1];
-	else
-		ray_data->h_wall = (int)(data.resolution[1] / ray_data->dist);
+	ray_data->h_wall = (int)(data.resolution[1] / ray_data->dist);
 	ray_data->draw[0] = -ray_data->h_wall / 2 + data.resolution[1] / 2;
 	if (ray_data->draw[0] < 0)
 		ray_data->draw[0] = 0;
