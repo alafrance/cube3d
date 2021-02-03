@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:02:11 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/02 17:33:23 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 14:24:51 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,25 +57,19 @@ void	ft_display_column(t_window window, t_ray *ray_data, t_data data, int column
 	i = 0;
 	while (i < ray_data->draw[0])
 	{
-		window.img.addr[column] = color_floor;
-		column += data.resolution[0];
+		window.img.addr[i * data.resolution[0] + column] = color_floor;
 		i++;
 	}
-	while (i < ray_data->draw[1])
+	while (i < ray_data->draw[1] && i < data.resolution[1])
 	{
 		ray_data->texy = (int)ray_data->texpos & (window.texture_used->height - 1);
 		ray_data->texpos += ray_data->step_tex;
-
-		window.img.addr[column] = window.texture_used->addr[
-								window.texture_used->height * ray_data->texy
-								+ ray_data->texx];
-		column += data.resolution[0];
+		window.img.addr[i * data.resolution[0] + column] = window.texture_used->addr[window.texture_used->height * ray_data->texy + ray_data->texx];
 		i++;
 	}
 	while (i < data.resolution[1])
 	{
-		window.img.addr[column] = color_roof;
-		column += data.resolution[0];
+		window.img.addr[i * data.resolution[0] + column] = color_roof;
 		i++;
 	}
 	ray_data->step_tex_x++;

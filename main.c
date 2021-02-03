@@ -6,28 +6,11 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:58:45 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/28 15:58:28 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 13:21:29 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	init_data(t_data *data)
-{
-	data->resolution[0] = 0;
-	data->resolution[1] = 0;
-	data->path_ntexture = NULL;
-	data->path_stexture = NULL;
-	data->path_wtexture = NULL;
-	data->path_etexture = NULL;
-	data->path_sprite = NULL;
-	data->map = NULL;
-	data->color_floor = NULL;
-	data->color_roof = NULL;
-	data->pos_player[0] = -1;
-	data->pos_player[1] = -1;
-	data->pos_camera = 0;
-}
 
 int main(int ac, char **av)
 {

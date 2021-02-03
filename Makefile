@@ -6,15 +6,15 @@
 #    By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 15:06:50 by alafranc          #+#    #+#              #
-#    Updated: 2021/01/27 16:12:16 by alafranc         ###   ########lyon.fr    #
+#    Updated: 2021/02/03 13:08:03 by alafranc         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 # DONT FORGET TO UNCOMMENT CLEAN AND FCLEAN MINILIBX
 NAME			= cub3d
-FILES			= ft_utility.c printer.c ft_error.c \
+FILES			= ft_utility.c printer.c ft_error.c ft_init_struct.c \
 $(addprefix parsing/, ft_parsing.c ft_check_data.c ft_path_texture.c check_map.c) \
-$(addprefix raycasting/, ft_raycasting.c ft_ray_calc.c ft_window.c) \
+$(addprefix raycasting/, ft_raycasting.c ft_ray_calc.c ft_window.c ) \
 $(addprefix movement/, ft_move.c ft_event.c ft_rotate.c)
 INC_FILES		= cub3d.h
 INC_PATH		= ./includes/

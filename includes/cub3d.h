@@ -1,105 +1,14 @@
 #ifndef CUB3D_H
 # define CUB3D_H
-# define true 1
-# define false 1
-#define KEY_UP 126
-#define KEY_DOWN 125
-#define KEY_LEFT 124
-#define KEY_RIGHT 123
-#define KEY_W 13
-#define KEY_A 0
-#define KEY_S 1
-#define KEY_D 2
+
 # include "../minilibx/mlx.h"
 # include "../libft/libft.h"
+# include "global_var.h"
+# include "struct.h"
 # include <fcntl.h>
 # include <string.h>
 # include <math.h>
 # include <stdio.h>
-
-typedef struct	s_data
-{
-	int			resolution[2];
-	char		*path_ntexture;
-	char		*path_stexture;
-	char		*path_wtexture;
-	char		*path_etexture;
-	char		*path_sprite;
-	char		**map;
-	char		*color_floor;
-	char		*color_roof;
-	double		pos_player[2];
-	char		pos_camera;
-	int			w_max;
-	int			h_max;
-}				t_data;
-
-typedef struct	s_ray {
-	int			step[2];
-	int			map[2];
-	int			is_hit;
-	double		eucli_dist[2];
-	double		deltaDist[2];
-	double		dist;
-	double		rayDir[2];
-	double		dir[2];
-	int			side;
-	double		plane[2];
-	int			h_wall;
-	int			draw[2];
-	double		step_tex_x;
-	double		step_tex_y;
-	double		wallx;
-	int			texx;
-	int			texy;
-	double		step_tex;
-	double		texpos;
-}				t_ray;
-
-typedef struct  s_img {
-	void        *img;
-	int			*addr;
-	int         bits_per_pixel;
-	int         line_length;
-	int         endian;
-	int			width;
-	int			height;
-}               t_img;
-
-typedef struct s_window {
-	void		*mlx;
-	void		*mlx_win;
-	t_img		img;
-	t_img		n_texture;
-	t_img		s_texture;
-	t_img		e_texture;
-	t_img		w_texture;
-	t_img		*texture_used;
-}				t_window;
-
-typedef struct	s_key
-{
-	int			key_w;
-	int			key_s;
-	int			key_d;
-	int			key_a;
-	int			key_up;
-	int			key_down;
-	int			key_left;
-	int			key_right;
-}				t_key;
-
-typedef struct	s_tab
-{
-	t_ray ray_data;
-	t_data data;
-	t_window window;
-	t_key	key;
-	int		is_pressed;
-	int		key_pressed;
-}				t_tab;
-
-
 
 void			ft_parsing(int fd, t_data *data);
 int				fill_struct_parsing(char *line, t_data *data);
@@ -163,4 +72,7 @@ void			init_tab_ar_s(t_tab *ar_s, t_ray ray_data, t_data data
 								, t_window window);
 void			ft_calculate_texture(t_ray *ray_data, t_img texture, t_data data);
 void			ft_open_texture(t_img *texture, void *mlx, char *path_texture);
+void			ft_initializer_minilibx(t_window window, t_tab ar_s);
+void			ft_calculate_draw_marge(t_ray *ray_data, t_data data);
+void			ft_choose_texture(t_window *window, t_ray ray_data);
 #endif

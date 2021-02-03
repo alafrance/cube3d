@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:23:23 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/02 17:43:28 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 13:42:00 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,5 @@ int ft_loop_hook(t_tab *ar_s)
 		ft_rotate_left(ar_s, moveSpeed);
 	if	(ar_s->key.key_right)
 		ft_rotate_right(ar_s, moveSpeed);
-	ft_refresh_raycasting(ar_s);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 13:28:06 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/02 17:11:54 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 14:13:36 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,6 @@ void	ft_calculate_texture(t_ray *ray_data, t_img texture, t_data data)
 	ray_data->texx = (int)(ray_data->wallx * (double)texture.width);
 	if ((ray_data->side && ray_data->rayDir[1] < 0) || (!ray_data->side && ray_data->rayDir[0] > 0))
 		ray_data->texx = texture.width - ray_data->texx - 1;
-	ray_data->step_tex = (double)texture.height / ray_data->h_wall;
+	ray_data->step_tex = 1.0 * texture.height / ray_data->h_wall;
 	ray_data->texpos = (ray_data->draw[0] - data.resolution[1] / 2 + ray_data->h_wall / 2) * ray_data->step_tex;
 }
