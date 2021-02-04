@@ -5,11 +5,13 @@ WE textures/brick_red.xpm
 EA textures/brick_red_dark.xpm
 F 55,86,205
 C 26,26,26
-S sprites/guard.xpm
+S sprites/438.xpm
 
 1111111
 1000001
+1002001
 1000001
-100S001
+1000201
+100N001
 1000001
 1111111

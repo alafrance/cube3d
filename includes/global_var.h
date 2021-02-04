@@ -10,4 +10,7 @@
 #define KEY_A 0
 #define KEY_S 1
 #define KEY_D 2
+#define UDIV 1
+#define VDIV 1
+#define VMOVE 0.0
 #endif

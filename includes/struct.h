@@ -59,6 +59,7 @@ typedef struct s_window {
 	t_img		e_texture;
 	t_img		w_texture;
 	t_img		*texture_used;
+	t_img		sprite;
 }				t_window;
 
 typedef struct	s_key
@@ -80,4 +81,22 @@ typedef struct	s_tab
 	t_window window;
 	t_key	key;
 }				t_tab;
+
+typedef struct s_sprite
+{
+	double      x;
+	double      y;
+	double  x_relative;
+	double  y_relative;
+	double  transformX;
+	double  transformY;
+	double  invDet;
+	int     sprite_screen_x;
+	int     v_move_screen;
+	int     sprite_height;
+	int     sprite_width;
+	int     draw_sprite_x[2];
+	int     draw_sprite_y[2];
+	double     dist;
+}               t_sprite;
 #endif

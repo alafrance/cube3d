@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:02:11 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/03 15:03:52 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 14:50:35 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,20 @@
 
 void	ft_init_window(t_window *window, t_data data)
 {
-	window->mlx = mlx_init();
-	window->mlx_win = mlx_new_window(window->mlx, data.resolution[0], data.resolution[1], "CUB3D");
 	window->img.img = mlx_new_image(window->mlx, data.resolution[0],
 					data.resolution[1]);
 	window->img.addr = (int*)mlx_get_data_addr(window->img.img, 
 										&(window->img.bits_per_pixel),
 										&(window->img.line_length),
 										&(window->img.endian));
-	ft_open_texture(&window->n_texture, window->mlx, data.path_ntexture);
-	ft_open_texture(&window->s_texture, window->mlx, data.path_stexture);
-	ft_open_texture(&window->e_texture, window->mlx, data.path_etexture);
-	ft_open_texture(&window->w_texture, window->mlx, data.path_wtexture);
+	ft_open_file(&window->n_texture, window->mlx, data.path_ntexture);
+	ft_open_file(&window->s_texture, window->mlx, data.path_stexture);
+	ft_open_file(&window->e_texture, window->mlx, data.path_etexture);
+	ft_open_file(&window->w_texture, window->mlx, data.path_wtexture);
+	ft_open_file(&window->sprite, window->mlx, data.path_sprite);
 }
 
-void ft_open_texture(t_img *texture, void *mlx, char *path_texture)
+void ft_open_file(t_img *texture, void *mlx, char *path_texture)
 {
 	texture->img = mlx_xpm_file_to_image(mlx, path_texture, &(texture->width), &(texture->height));
 	texture->addr = (int*)mlx_get_data_addr(texture->img, &(texture->bits_per_pixel), &(texture->line_length),
@@ -80,4 +79,3 @@ int		ft_close_window(t_tab *ar_s)
 	ft_close(1, &(ar_s->data));
 	return (1);
 }
-
