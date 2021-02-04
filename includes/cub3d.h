@@ -51,7 +51,7 @@ void			caculate_deltaDist(t_ray *ray_data);
 void			calculate_max_map(t_data *data);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void			ft_display_column(t_window window, t_ray *ray_data, t_data data, int column);
-void			ft_init_window(t_window *window, t_data data);
+void			ft_init_window_after(t_window *window, t_data data);
 void			ft_refresh_raycasting(t_tab *ar_struct);
 void			init_ray_data_before(t_ray *ray_data, t_data data);
 void			init_ray_data_after(t_data data, t_ray *ray_data);
@@ -77,6 +77,6 @@ void			ft_calculate_draw_marge(t_ray *ray_data, t_data data);
 void			ft_choose_texture(t_window *window, t_ray ray_data);
 void			ft_put_sprite(t_window *window, t_data data, t_ray ray_data);
 int				ft_count_sprite(t_data data);
-t_sprite		*ft_pick_sprite(t_data data, t_ray ray_data);
-
+t_sprite		*ft_pick_sprite(t_data data, int number_sprites);
+void			ft_init_window_before(t_window *window, t_data data);
 #endif

@@ -18,6 +18,24 @@ typedef struct	s_data
 	int			h_max;
 }				t_data;
 
+typedef struct s_sprite
+{
+	double		x;
+	double		y;
+	double		x_relative;
+	double		y_relative;
+	double		transformX;
+	double		transformY;
+	double		invDet;
+	int			sprite_screen_x;
+	int			v_move_screen;
+	int			sprite_height;
+	int			sprite_width;
+	int			draw_sprite_x[2];
+	int			draw_sprite_y[2];
+	double		dist;
+}               t_sprite;
+
 typedef struct	s_ray {
 	int			step[2];
 	int			map[2];
@@ -59,7 +77,9 @@ typedef struct s_window {
 	t_img		e_texture;
 	t_img		w_texture;
 	t_img		*texture_used;
-	t_img		sprite;
+	t_img		sprite_file;
+	t_sprite	*sprite;
+	int			number_sprites;
 }				t_window;
 
 typedef struct	s_key
@@ -76,27 +96,11 @@ typedef struct	s_key
 
 typedef struct	s_tab
 {
-	t_ray ray_data;
-	t_data data;
-	t_window window;
-	t_key	key;
+	t_ray		ray_data;
+	t_data		data;
+	t_window	window;
+	t_key		key;
 }				t_tab;
 
-typedef struct s_sprite
-{
-	double      x;
-	double      y;
-	double  x_relative;
-	double  y_relative;
-	double  transformX;
-	double  transformY;
-	double  invDet;
-	int     sprite_screen_x;
-	int     v_move_screen;
-	int     sprite_height;
-	int     sprite_width;
-	int     draw_sprite_x[2];
-	int     draw_sprite_y[2];
-	double     dist;
-}               t_sprite;
+
 #endif

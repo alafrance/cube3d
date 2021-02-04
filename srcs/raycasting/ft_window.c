@@ -6,13 +6,13 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:02:11 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/04 14:50:35 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 17:44:05 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_init_window(t_window *window, t_data data)
+void	ft_init_window_after(t_window *window, t_data data)
 {
 	window->img.img = mlx_new_image(window->mlx, data.resolution[0],
 					data.resolution[1]);
@@ -24,8 +24,17 @@ void	ft_init_window(t_window *window, t_data data)
 	ft_open_file(&window->s_texture, window->mlx, data.path_stexture);
 	ft_open_file(&window->e_texture, window->mlx, data.path_etexture);
 	ft_open_file(&window->w_texture, window->mlx, data.path_wtexture);
-	ft_open_file(&window->sprite, window->mlx, data.path_sprite);
+	ft_open_file(&window->sprite_file, window->mlx, data.path_sprite);
 }
+
+void	ft_init_window_before(t_window *window, t_data data)
+{
+	window->number_sprites = ft_count_sprite(data);
+	window->sprite = ft_pick_sprite(data, window->number_sprites);
+	window->mlx = mlx_init();
+	window->mlx_win = mlx_new_window(window->mlx, data.resolution[0], data.resolution[1], "CUB3D");
+}
+
 
 void ft_open_file(t_img *texture, void *mlx, char *path_texture)
 {

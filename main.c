@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:58:45 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/04 14:50:59 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 17:39:28 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int main(int ac, char **av)
     if (fd <= 0 || !ft_is_format(av[1], ".cub"))
         return (ft_error_msg(22, &data));
     ft_parsing(fd, &data);
-	window.mlx = mlx_init();
-	window.mlx_win = mlx_new_window(window.mlx, data.resolution[0], data.resolution[1], "CUB3D");
+	ft_init_window_before(&window, data);
 	init_ray_data_before(&ray_data, data);
 	init_tab_ar_s(&ar_s, ray_data, data, window);
 	ft_refresh_raycasting(&ar_s);

@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:46:25 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/04 14:50:27 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 17:41:25 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_refresh_raycasting(t_tab *ar_struct)
 {
-	ft_init_window(&ar_struct->window, ar_struct->data);
+	ft_init_window_after(&ar_struct->window, ar_struct->data);
 	mlx_clear_window(ar_struct->window.mlx, ar_struct->window.mlx_win);
 	ft_raycasting(ar_struct->data, &ar_struct->ray_data, ar_struct->window);
 	ft_put_sprite(&ar_struct->window, ar_struct->data, ar_struct->ray_data);

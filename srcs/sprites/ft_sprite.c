@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sprite->c                                        :+:      :+:    :+:   */
+/*   ft_sprite.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:41:02 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/04 11:20:31 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 17:49:31 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void    ft_calc_height_sprite(t_sprite *sprite, t_data data)
+void	ft_calc_height_sprite(t_sprite *sprite, t_data data)
 {
 	sprite->sprite_height = abs((int)((data.resolution[1] / sprite->transformY))) / VDIV;
 	sprite->draw_sprite_y[0] = -sprite->sprite_height / 2 + data.resolution[1] / 2 + sprite->v_move_screen;
@@ -23,7 +23,7 @@ void    ft_calc_height_sprite(t_sprite *sprite, t_data data)
 		sprite->draw_sprite_y[1] = data.resolution[1] - 1;
 }
 
-void    ft_calc_width_sprite(t_sprite *sprite, t_data data)
+void	ft_calc_width_sprite(t_sprite *sprite, t_data data)
 {
 	sprite->sprite_width = abs((int)((data.resolution[1] / sprite->transformY))) / UDIV;
 	sprite->draw_sprite_x[0] = -sprite->sprite_width / 2 + sprite->sprite_screen_x;
@@ -34,7 +34,7 @@ void    ft_calc_width_sprite(t_sprite *sprite, t_data data)
 		sprite->draw_sprite_x[1] = data.resolution[0] - 1;
 }
 
-void    ft_init_sprite(t_sprite *sprite, t_ray ray_data, t_data data)
+void	ft_init_sprite(t_sprite *sprite, t_ray ray_data, t_data data)
 {
 	sprite->x = 2;
 	sprite->y = 3;
@@ -48,7 +48,7 @@ void    ft_init_sprite(t_sprite *sprite, t_ray ray_data, t_data data)
 	sprite->v_move_screen = (int)(VMOVE / sprite->transformY);
 }
 
-void    ft_print_sprite_on_screen(t_sprite sprite, t_img texture, t_data data, t_ray ray_data, t_window *window)
+void	ft_print_sprite_on_screen(t_sprite sprite, t_img texture, t_data data, t_ray ray_data, t_window *window)
 {
 	int i;
 	int j;
@@ -69,28 +69,25 @@ void    ft_print_sprite_on_screen(t_sprite sprite, t_img texture, t_data data, t
 			{
 				d = (j - sprite.v_move_screen) * 256 - data.resolution[1] * 128 + sprite.sprite_height * 128;
 				texy = ((d * texture.height) / sprite.sprite_height) / 256;
-				// dprintf(1, "texx: %d, texy: %d\n",  texx, texy);
 				color = texture.addr[texture.width * texy + texx];
 				if (color != 0x980088)
 					window->img.addr[j * data.resolution[0] + i] = color;
-				// dprintf(1, "%d\n", texture.addr[texture.width * texy + texx]);
 				j++;
 			}
 		i++;
 	}
 }
 
-
-void    ft_put_sprite(t_window *window, t_data data, t_ray ray_data)
+void	ft_put_sprite(t_window *window, t_data data, t_ray ray_data)
 {
-	t_sprite sprite;
-
 	(void)window;
-	// sprite = ft_pick_sprite(data, ray_data);
-	ft_init_sprite(&sprite, ray_data, data);
-	ft_calc_height_sprite(&sprite, data);
-	ft_calc_width_sprite(&sprite, data);
+	(void)data;
+	(void)ray_data;
+	// printf("%d\n", window->number_sprites);
+	
+	// ft_init_sprite(&sprite, ray_data, data);
+	// ft_calc_height_sprite(&sprite, data);
+	// ft_calc_width_sprite(&sprite, data);
 	// ft_print_sprite(sprite);
-	ft_print_sprite_on_screen(sprite, window->sprite, data, ray_data, window);
+	// ft_print_sprite_on_screen(sprite, window->sprite, data, ray_data, window);
 }
-
