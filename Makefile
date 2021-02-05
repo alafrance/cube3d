@@ -6,7 +6,7 @@
 #    By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 15:06:50 by alafranc          #+#    #+#              #
-#    Updated: 2021/02/05 10:18:35 by alafranc         ###   ########lyon.fr    #
+#    Updated: 2021/02/05 19:08:35 by alafranc         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ $(addprefix parsing/, ft_parsing.c ft_check_data.c ft_path_texture.c check_map.c
 $(addprefix raycasting/, ft_raycasting.c ft_ray_calc.c ft_window.c ) \
 $(addprefix movement/, ft_move.c ft_event.c ft_rotate.c) \
 $(addprefix sprites/, ft_sprite.c ft_pick_sprite.c)
-INC_FILES		= cub3d.h
+INC_FILES		= cub3d.h struct.h global_var.h
 INC_PATH		= ./includes/
 INC				= $(addprefix ${INC_PATH}, ${INC_FILES})
 SRC_PATH		= ./srcs/

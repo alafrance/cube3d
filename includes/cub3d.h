@@ -79,4 +79,5 @@ void			ft_put_sprite(t_window *window, t_data data, t_ray ray_data);
 int				ft_count_sprite(t_data data);
 t_sprite		*ft_pick_sprite(t_data data, int number_sprites);
 void			ft_init_window_before(t_window *window, t_data data);
+void			init_button(t_key *key);
 #endif

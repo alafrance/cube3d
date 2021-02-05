@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:46:25 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/04 17:41:25 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 19:11:57 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ void	ft_refresh_raycasting(t_tab *ar_struct)
 void	ft_raycasting(t_data data, t_ray *ray_data, t_window window)
 {
 	int column;
-
+	
 	column = -1;
+	if (!(ray_data->zbuffer = malloc(sizeof(double) * data.resolution[0])))
+		ft_error_msg_perso("MALLOC ERROR\n", &data);
 	while (++column < data.resolution[0])
 	{
 		init_ray_data_after(data, ray_data);
@@ -34,6 +36,7 @@ void	ft_raycasting(t_data data, t_ray *ray_data, t_window window)
 		ft_choose_texture(&window, *ray_data);
 		ft_calculate_texture(ray_data, *window.texture_used, data);
 		ft_display_column(window, ray_data, data, column);
+		ray_data->zbuffer[column] = ray_data->dist;
 	}
 	// ft_print_struct(*ray_data, data);
 }

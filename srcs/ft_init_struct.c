@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 13:03:22 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/03 13:47:02 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 19:07:02 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,16 @@ void	init_ray_data_before(t_ray *ray_data, t_data data)
 		ray_data->plane[0] = 0.66;
 		ray_data->plane[1] = 0;
 	}
+}
+
+void init_button(t_key *key)
+{
+	key->key_a = 0;
+	key->key_s = 0;
+	key->key_d = 0;
+	key->key_w = 0;
+	key->key_up = 0;
+	key->key_down = 0;
+	key->key_left = 0;
+	key->key_right = 0;
 }

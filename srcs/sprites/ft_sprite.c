@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:41:02 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/05 10:24:34 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 19:11:37 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	ft_print_sprite_on_screen(t_sprite sprite, t_data data, t_ray ray_data, t_w
 		texx = (int)(256 * (i - (-sprite.sprite_width / 2 + sprite.sprite_screen_x)) * window->sprite_file.width / sprite.sprite_width) / 256;
 		j = sprite.draw_sprite_y[0];
 		if (sprite.transformY > 0 && i > 0
-			&& i < data.resolution[0])
-			//  && sprite.transformY < ray_data.dist)
+			&& i < data.resolution[0]
+			&& sprite.transformY < ray_data.zbuffer[i])
 			while (j < sprite.draw_sprite_y[1])
 			{
 				d = (j - sprite.v_move_screen) * 256 - data.resolution[1] * 128 + sprite.sprite_height * 128;
@@ -81,7 +81,6 @@ void	ft_put_sprite(t_window *window, t_data data, t_ray ray_data)
 	int i;
 
 	i = 0;
-
 	while (i < window->number_sprites)
 	{
 		ft_init_sprite(&window->sprite[i], ray_data, data);

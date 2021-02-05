@@ -56,6 +56,7 @@ typedef struct	s_ray {
 	int			texy;
 	double		step_tex;
 	double		texpos;
+	double		*zbuffer;
 }				t_ray;
 
 typedef struct  s_img {
