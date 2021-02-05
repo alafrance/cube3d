@@ -6,7 +6,7 @@
 #    By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 15:06:50 by alafranc          #+#    #+#              #
-#    Updated: 2021/02/04 17:04:10 by alafranc         ###   ########lyon.fr    #
+#    Updated: 2021/02/05 10:18:35 by alafranc         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC				= $(addprefix ${SRC_PATH}, ${FILES})
 
 CC				= clang
 OBJS 			= ${SRC:.c=.o}
-FLAGS			= -Wall -Wextra -Werror
+FLAGS			= #-Wall -Wextra -Werror
 
 #LIBRARY
 NAME_LIBFT 		= libft.a

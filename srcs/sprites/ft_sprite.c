@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:41:02 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/04 17:49:31 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 10:24:34 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	ft_calc_width_sprite(t_sprite *sprite, t_data data)
 
 void	ft_init_sprite(t_sprite *sprite, t_ray ray_data, t_data data)
 {
-	sprite->x = 2;
-	sprite->y = 3;
 	sprite->dist = ft_power(data.pos_player[0] - sprite->x, 2) + ft_power(data.pos_player[1] - sprite->y, 2);
 	sprite->x_relative = sprite->x - data.pos_player[0];
 	sprite->y_relative = sprite->y - data.pos_player[1];
@@ -48,7 +46,7 @@ void	ft_init_sprite(t_sprite *sprite, t_ray ray_data, t_data data)
 	sprite->v_move_screen = (int)(VMOVE / sprite->transformY);
 }
 
-void	ft_print_sprite_on_screen(t_sprite sprite, t_img texture, t_data data, t_ray ray_data, t_window *window)
+void	ft_print_sprite_on_screen(t_sprite sprite, t_data data, t_ray ray_data, t_window *window)
 {
 	int i;
 	int j;
@@ -60,16 +58,16 @@ void	ft_print_sprite_on_screen(t_sprite sprite, t_img texture, t_data data, t_ra
 	i = sprite.draw_sprite_x[0];
 	while (i < sprite.draw_sprite_x[1])
 	{
-		texx = (int)(256 * (i - (-sprite.sprite_width / 2 + sprite.sprite_screen_x)) * texture.width / sprite.sprite_width) / 256;
+		texx = (int)(256 * (i - (-sprite.sprite_width / 2 + sprite.sprite_screen_x)) * window->sprite_file.width / sprite.sprite_width) / 256;
 		j = sprite.draw_sprite_y[0];
 		if (sprite.transformY > 0 && i > 0
-			&& i < data.resolution[0]
-			 && sprite.transformY < ray_data.dist)
+			&& i < data.resolution[0])
+			//  && sprite.transformY < ray_data.dist)
 			while (j < sprite.draw_sprite_y[1])
 			{
 				d = (j - sprite.v_move_screen) * 256 - data.resolution[1] * 128 + sprite.sprite_height * 128;
-				texy = ((d * texture.height) / sprite.sprite_height) / 256;
-				color = texture.addr[texture.width * texy + texx];
+				texy = ((d * window->sprite_file.height) / sprite.sprite_height) / 256;
+				color = window->sprite_file.addr[window->sprite_file.width * texy + texx];
 				if (color != 0x980088)
 					window->img.addr[j * data.resolution[0] + i] = color;
 				j++;
@@ -80,14 +78,17 @@ void	ft_print_sprite_on_screen(t_sprite sprite, t_img texture, t_data data, t_ra
 
 void	ft_put_sprite(t_window *window, t_data data, t_ray ray_data)
 {
-	(void)window;
-	(void)data;
-	(void)ray_data;
-	// printf("%d\n", window->number_sprites);
-	
-	// ft_init_sprite(&sprite, ray_data, data);
-	// ft_calc_height_sprite(&sprite, data);
-	// ft_calc_width_sprite(&sprite, data);
-	// ft_print_sprite(sprite);
-	// ft_print_sprite_on_screen(sprite, window->sprite, data, ray_data, window);
+	int i;
+
+	i = 0;
+
+	while (i < window->number_sprites)
+	{
+		ft_init_sprite(&window->sprite[i], ray_data, data);
+		ft_calc_height_sprite(&window->sprite[i], data);
+		ft_calc_width_sprite(&window->sprite[i], data);
+		// ft_print_sprite(window->sprite[i]);
+		ft_print_sprite_on_screen(window->sprite[i], data, ray_data, window);
+		i++;
+	}
 }
