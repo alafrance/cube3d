@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:41:02 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/05 19:11:37 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 11:35:04 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ void	ft_calc_width_sprite(t_sprite *sprite, t_data data)
 
 void	ft_init_sprite(t_sprite *sprite, t_ray ray_data, t_data data)
 {
-	sprite->dist = ft_power(data.pos_player[0] - sprite->x, 2) + ft_power(data.pos_player[1] - sprite->y, 2);
 	sprite->x_relative = sprite->x - data.pos_player[0];
 	sprite->y_relative = sprite->y - data.pos_player[1];
 	sprite->invDet = 1.0 / (ray_data.plane[0] * ray_data.dir[1] - ray_data.dir[0] * ray_data.plane[1]);
 	sprite->transformX =  sprite->invDet * (ray_data.dir[1] * sprite->x_relative - ray_data.dir[0] * sprite->y_relative); 
-	sprite->transformY =  sprite->invDet * (-ray_data.plane[1] * sprite->x_relative - ray_data.plane[0] * sprite->y_relative);
+	sprite->transformY =  sprite->invDet * (-ray_data.plane[1] * sprite->x_relative + ray_data.plane[0] * sprite->y_relative);
 	sprite->sprite_screen_x = (int)(data.resolution[0] / 2) * (1 + sprite->transformX / sprite->transformY);
 	sprite->v_move_screen = (int)(VMOVE / sprite->transformY);
 }
@@ -62,7 +61,8 @@ void	ft_print_sprite_on_screen(t_sprite sprite, t_data data, t_ray ray_data, t_w
 		j = sprite.draw_sprite_y[0];
 		if (sprite.transformY > 0 && i > 0
 			&& i < data.resolution[0]
-			&& sprite.transformY < ray_data.zbuffer[i])
+			&& sprite.transformY < ray_data.zbuffer[i]
+			&& j > 0)
 			while (j < sprite.draw_sprite_y[1])
 			{
 				d = (j - sprite.v_move_screen) * 256 - data.resolution[1] * 128 + sprite.sprite_height * 128;
@@ -80,7 +80,11 @@ void	ft_put_sprite(t_window *window, t_data data, t_ray ray_data)
 {
 	int i;
 
+	i = -1;
+	while (++i < window->number_sprites)
+		window->sprite[i].dist = ft_power(data.pos_player[0] - window->sprite[i].x, 2) + ft_power(data.pos_player[1] - window->sprite[i].y, 2);
 	i = 0;
+	window->sprite = ft_sort_sprite(window->sprite, window->number_sprites);
 	while (i < window->number_sprites)
 	{
 		ft_init_sprite(&window->sprite[i], ray_data, data);

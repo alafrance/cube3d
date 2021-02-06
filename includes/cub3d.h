@@ -80,4 +80,6 @@ int				ft_count_sprite(t_data data);
 t_sprite		*ft_pick_sprite(t_data data, int number_sprites);
 void			ft_init_window_before(t_window *window, t_data data);
 void			init_button(t_key *key);
+void			ft_print_sprite(t_sprite sprite);
+t_sprite		*ft_sort_sprite(t_sprite *sprite, int number_sprites);
 #endif

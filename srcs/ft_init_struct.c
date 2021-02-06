@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 13:03:22 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/05 19:07:02 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 11:23:56 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,6 @@ void	init_ray_data_after(t_data data, t_ray *ray_data)
 	ray_data->map[0] = data.pos_player[0];
 	ray_data->map[1] = data.pos_player[1];
 	ray_data->is_hit = 0;
-}
-
-void	init_tab_ar_s(t_tab *ar_s, t_ray ray_data, t_data data, t_window window)
-{
-	ar_s->ray_data = ray_data;
-	ar_s->data = data;
-	ar_s->window = window;
 }
 
 void	init_ray_data_before(t_ray *ray_data, t_data data)
