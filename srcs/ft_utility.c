@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 10:14:13 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/16 16:47:00 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 12:30:57 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,11 @@ int		ft_is_format(char *filename, char *extension)
 		&& filename[i - 3] == extension[0])
 		return (1);
 	return (0);
+}
+
+int	closest_multiple_of_x(int number, int x)
+{
+	while (number % x != 0)
+		number++;
+	return (number);
 }

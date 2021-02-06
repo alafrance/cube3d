@@ -78,8 +78,10 @@ void			ft_choose_texture(t_window *window, t_ray ray_data);
 void			ft_put_sprite(t_window *window, t_data data, t_ray ray_data);
 int				ft_count_sprite(t_data data);
 t_sprite		*ft_pick_sprite(t_data data, int number_sprites);
-void			ft_init_window_before(t_window *window, t_data data);
 void			init_button(t_key *key);
 void			ft_print_sprite(t_sprite sprite);
 t_sprite		*ft_sort_sprite(t_sprite *sprite, int number_sprites);
+void			fix_resolution_data(t_data *data, t_window window);
+int				closest_multiple_of_x(int number, int x);
+void			ft_init_general_main(t_tab *ar_s);
 #endif

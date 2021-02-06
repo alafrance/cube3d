@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:58:45 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/06 11:23:50 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 12:25:07 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ int main(int ac, char **av)
     if (fd <= 0 || !ft_is_format(av[1], ".cub"))
         return (ft_error_msg(22, &ar_s.data));
     ft_parsing(fd, &ar_s.data);
-	ft_init_window_before(&ar_s.window, ar_s.data);
-	init_ray_data_before(&ar_s.ray_data, ar_s.data);
-	init_button(&ar_s.key);
+	ft_init_general_main(&ar_s);
 	ft_refresh_raycasting(&ar_s);
 	launch_minilibx(ar_s.window, ar_s);
 	close(fd);

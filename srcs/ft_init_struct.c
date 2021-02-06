@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 13:03:22 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/06 11:23:56 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 12:57:10 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,20 @@ void	init_data(t_data *data)
 	data->pos_player[0] = -1;
 	data->pos_player[1] = -1;
 	data->pos_camera = 0;
+}
+
+void	fix_resolution_data(t_data *data, t_window window)
+{
+	int width_max;
+	int height_max;
+
+	mlx_get_screen_size(window.mlx, &width_max, &height_max);
+	data->resolution[0] = closest_multiple_of_x(data->resolution[0], 320);
+	data->resolution[1] = closest_multiple_of_x(data->resolution[1], 320);
+	if (data->resolution[0] > width_max)
+		data->resolution[0] = width_max;
+	if (data->resolution[1] > height_max)
+		data->resolution[1] = height_max;
 }
 
 void	init_ray_data_after(t_data data, t_ray *ray_data)
