@@ -85,5 +85,5 @@ t_sprite		*ft_sort_sprite(t_sprite *sprite, int number_sprites);
 void			fix_resolution_data(t_data *data, t_window window);
 int				closest_multiple_of_x(int number, int x);
 void			ft_init_general_main(t_tab *ar_s);
-void			ft_bmp (char *filename);
+int				ft_bmp (char *filename, t_data data);
 #endif

@@ -30,4 +30,5 @@ typedef struct s_bitmap {
 } t_bitmap;
 
 # pragma pack(pop)
+
 #endif
