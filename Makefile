@@ -12,7 +12,7 @@
 
 # DONT FORGET TO UNCOMMENT CLEAN AND FCLEAN MINILIBX
 NAME			= cub3d
-FILES			= ft_utility.c printer.c ft_error.c ft_init_struct.c \
+FILES			= ft_utility.c printer.c ft_error.c ft_init_struct.c ft_bmp.c \
 $(addprefix parsing/, ft_parsing.c ft_check_data.c ft_path_texture.c check_map.c) \
 $(addprefix raycasting/, ft_raycasting.c ft_ray_calc.c ft_window.c ) \
 $(addprefix movement/, ft_move.c ft_event.c ft_rotate.c) \

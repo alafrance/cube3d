@@ -21,22 +21,27 @@ void launch_minilibx(t_window window, t_tab ar_s)
 	mlx_loop(window.mlx);
 }
 
-int main(int ac, char **av)
-{
-    int     fd;
-	t_tab ar_s;
+// int main(int ac, char **av)
+// {
+//     int     fd;
+// 	t_tab ar_s;
 
-	init_data(&ar_s.data);
-    if (ac != 2)
-         return (ft_error_msg(22, &ar_s.data));
-    fd = open(av[1], O_RDWR);
-    if (fd <= 0 || !ft_is_format(av[1], ".cub"))
-        return (ft_error_msg(22, &ar_s.data));
-    ft_parsing(fd, &ar_s.data);
-	ft_init_general_main(&ar_s);
-	ft_refresh_raycasting(&ar_s);
-	launch_minilibx(ar_s.window, ar_s);
-	close(fd);
-	free_struct(&ar_s.data);
-	return (1);
+// 	init_data(&ar_s.data);
+//     if (ac != 2)
+//          return (ft_error_msg(22, &ar_s.data));
+//     fd = open(av[1], O_RDWR);
+//     if (fd <= 0 || !ft_is_format(av[1], ".cub"))
+//         return (ft_error_msg(22, &ar_s.data));
+//     ft_parsing(fd, &ar_s.data);
+// 	ft_init_general_main(&ar_s);
+// 	ft_refresh_raycasting(&ar_s);
+// 	launch_minilibx(ar_s.window, ar_s);
+// 	close(fd);
+// 	free_struct(&ar_s.data);
+// 	return (1);
+// }
+
+int main()
+{
+	ft_bmp("test.bmp");
 }
