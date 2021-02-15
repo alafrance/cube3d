@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:08:42 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/03 13:41:52 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 14:36:03 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ void	ft_rotate(t_tab *ar_s, double  rotSpeed)
 	ar_s->ray_data.dir[1] = oldDir * sin(rotSpeed) + ar_s->ray_data.dir[1] * cos(rotSpeed);
 	ar_s->ray_data.plane[0] = ar_s->ray_data.dir[1] * 0.66;
 	ar_s->ray_data.plane[1] = -ar_s->ray_data.dir[0] * 0.66;
-	ft_refresh_raycasting(ar_s);
+	ft_refresh_raycasting(ar_s, 1);
 }

@@ -1,7 +1,7 @@
 #ifndef GLOBAL_VAR_H
 #define  GLOBAL_VAR_H
 # define true 1
-# define false 1
+# define false 0
 #define KEY_UP 126
 #define KEY_DOWN 125
 #define KEY_LEFT 124

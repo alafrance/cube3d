@@ -53,7 +53,7 @@ void			calculate_max_map(t_data *data);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void			ft_display_column(t_window window, t_ray *ray_data, t_data data, int column);
 void			ft_init_window_after(t_window *window, t_data data);
-void			ft_refresh_raycasting(t_tab *ar_struct);
+void			ft_refresh_raycasting(t_tab *ar_struct, int is_display);
 void			init_ray_data_before(t_ray *ray_data, t_data data);
 void			init_ray_data_after(t_data data, t_ray *ray_data);
 int				change_color_in_hexa(char *color);
@@ -85,5 +85,5 @@ t_sprite		*ft_sort_sprite(t_sprite *sprite, int number_sprites);
 void			fix_resolution_data(t_data *data, t_window window);
 int				closest_multiple_of_x(int number, int x);
 void			ft_init_general_main(t_tab *ar_s);
-int				ft_bmp (char *filename, t_data data);
+int				ft_bmp(t_tab *ar_s);
 #endif

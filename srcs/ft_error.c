@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 13:07:01 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/02 11:03:16 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 11:28:51 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_close(int bool, t_data *data)
 {
-	free_struct(data);
+	if (data)
+		free_struct(data);
 	if (bool)
 		exit(EXIT_SUCCESS);
 	else

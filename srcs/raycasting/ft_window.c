@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:02:11 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/06 12:29:28 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 14:29:20 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,6 @@ void	ft_init_window_after(t_window *window, t_data data)
 	ft_open_file(&window->w_texture, window->mlx, data.path_wtexture);
 	ft_open_file(&window->sprite_file, window->mlx, data.path_sprite);
 }
-
-void	ft_init_general_main(t_tab *ar_s)
-{
-	dprintf(1, "before : %d, %d\n", ar_s->data.resolution[0], ar_s->data.resolution[1]);
-	fix_resolution_data(&ar_s->data, ar_s->window);
-	dprintf(1, "after : %d, %d\n", ar_s->data.resolution[0], ar_s->data.resolution[1]);
-	ar_s->window.number_sprites = ft_count_sprite(ar_s->data);
-	ar_s->window.sprite = ft_pick_sprite(ar_s->data, ar_s->window.number_sprites);
-	ar_s->window.mlx = mlx_init();
-	ar_s->window.mlx_win = mlx_new_window(ar_s->window.mlx, ar_s->data.resolution[0], ar_s->data.resolution[1], "CUB3D");
-	init_ray_data_before(&ar_s->ray_data, ar_s->data);
-	init_button(&ar_s->key);
-}
-
 
 void ft_open_file(t_img *texture, void *mlx, char *path_texture)
 {

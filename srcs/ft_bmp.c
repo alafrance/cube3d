@@ -6,58 +6,64 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 21:49:06 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/14 22:40:33 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 15:05:24 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 
-#define _width 1920
-#define _height 1080
-#define _bitsperpixel 24
-#define _pixelbytesize _height*_width*_bitsperpixel/8
-#define _filesize _pixelbytesize+sizeof(t_bitmap)
-
-
-void	ft_init_header_bmp(t_bitmap *pbitmap)
+void	ft_init_header_bmp(t_bitmap *pbitmap, t_data data, int filesize, int pixelbytesize)
 {
 	pbitmap->fileheader.signature[0] = 'B';
-    pbitmap->fileheader.signature[1] = 'M';
-	pbitmap->fileheader.filesize = _filesize;
+	pbitmap->fileheader.signature[1] = 'M';
+	pbitmap->fileheader.filesize = filesize;
 	pbitmap->fileheader.reserved = 0;
 	pbitmap->fileheader.fileoffset_to_pixelarray = sizeof(t_bitmap);
 	pbitmap->bitmapinfoheader.dibheadersize = sizeof(t_bitmapinfoheader);
-	pbitmap->bitmapinfoheader.width = _width;
-	pbitmap->bitmapinfoheader.height = _height;
+	pbitmap->bitmapinfoheader.width = data.resolution[0];
+	pbitmap->bitmapinfoheader.height = data.resolution[1];
 	pbitmap->bitmapinfoheader.planes = 1;
-	pbitmap->bitmapinfoheader.bitsperpixel = _bitsperpixel;
+	pbitmap->bitmapinfoheader.bitsperpixel = 24;
 	pbitmap->bitmapinfoheader.compression = 0;
-	pbitmap->bitmapinfoheader.imagesize = _pixelbytesize;
+	pbitmap->bitmapinfoheader.imagesize = pixelbytesize;
 	pbitmap->bitmapinfoheader.ypixelpermeter = 0x130B;
 	pbitmap->bitmapinfoheader.xpixelpermeter = 0x130B;
 	pbitmap->bitmapinfoheader.numcolorspallette = 0;
 }
 
-void	ft_create_image_bmp(int *pixelbuffer)
+void	ft_create_img(char **pixelbuffer, t_tab *ar_s, int pixelbytesize)
 {
-	memset(pixelbuffer, 0xFF,_pixelbytesize);
+	int			i;
+
+	i = 0;
+	if (!(*pixelbuffer = malloc(24)))
+		ft_error_msg_perso("Malloc error", NULL);
+	ft_memset(*pixelbuffer, ar_s->window.img.addr[i], 1);
 }
-
-int ft_bmp (char *filename, t_data data)
+int		ft_bmp(t_tab *ar_s)
 {
-	int fp = open(filename, O_WRONLY | O_APPEND | O_CREAT);
-	t_bitmap *pbitmap  = (t_bitmap*)calloc(1,sizeof(t_bitmap));
-	int *pixelbuffer = (int *)malloc(_pixelbytesize);
+	int			fd;
+	t_bitmap	*pbitmap;
+	int			pixelbytesize;
+	int			filesize;
+	char		*pixelbuffer;
 
-    if (pbitmap == NULL || pixelbuffer == NULL)
-        return (ft_error_msg_perso("Malloc error", &data));
-	ft_init_header_bmp(pbitmap);
-	ft_create_image_bmp(pixelbuffer);
-	write(fp, pbitmap, sizeof(t_bitmap)); // WRITE HEADER
-	write(fp, pixelbuffer, _pixelbytesize); // WRITE IMAGE
-	close(fp);
+   	ft_refresh_raycasting(ar_s, 0);
+	pixelbytesize = ar_s->data.resolution[0] * ar_s->data.resolution[1] * 24 / 8;
+	filesize = pixelbytesize + sizeof(t_bitmap);
+	fd = open("cub3d.bmp",  O_WRONLY | O_TRUNC | O_CREAT, 0777);
+	if (!(pbitmap  = calloc(1,sizeof(t_bitmap))))
+		return (ft_error_msg_perso("Malloc error", NULL));
+	if (!(pixelbuffer = malloc(24)))
+		ft_error_msg_perso("Malloc error", NULL);
+	ft_init_header_bmp(pbitmap, ar_s->data, filesize, pixelbytesize);
+	// ft_create_image(&pixelbuffer, ar_s, pixelbytesize);
+	write(fd, pbitmap, sizeof(t_bitmap));
+	// memset(pixelbuffer, , pixelbytesize);
+	write(fd, pixelbuffer, pixelbytesize);
+	close(fd);
 	free(pbitmap);
 	free(pixelbuffer);
-    return (1);
+	return (1);
 }

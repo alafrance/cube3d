@@ -6,19 +6,21 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:46:25 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/05 19:11:57 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 14:35:48 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_refresh_raycasting(t_tab *ar_struct)
+void	ft_refresh_raycasting(t_tab *ar_struct, int is_display)
 {
 	ft_init_window_after(&ar_struct->window, ar_struct->data);
-	mlx_clear_window(ar_struct->window.mlx, ar_struct->window.mlx_win);
+	if (is_display)
+		mlx_clear_window(ar_struct->window.mlx, ar_struct->window.mlx_win);
 	ft_raycasting(ar_struct->data, &ar_struct->ray_data, ar_struct->window);
 	ft_put_sprite(&ar_struct->window, ar_struct->data, ar_struct->ray_data);
-	mlx_put_image_to_window(ar_struct->window.mlx, ar_struct->window.mlx_win, ar_struct->window.img.img, 0, 0);
+	if (is_display)
+		mlx_put_image_to_window(ar_struct->window.mlx, ar_struct->window.mlx_win, ar_struct->window.img.img, 0, 0);
 }
 
 void	ft_raycasting(t_data data, t_ray *ray_data, t_window window)
@@ -38,7 +40,6 @@ void	ft_raycasting(t_data data, t_ray *ray_data, t_window window)
 		ft_display_column(window, ray_data, data, column);
 		ray_data->zbuffer[column] = ray_data->dist;
 	}
-	// ft_print_struct(*ray_data, data);
 }
 
 void	ft_calculate_draw_marge(t_ray *ray_data, t_data data)

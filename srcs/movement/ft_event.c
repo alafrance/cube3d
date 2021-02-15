@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:23:23 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/04 17:00:31 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 11:33:48 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int ft_loop_hook(t_tab *ar_s)
 {
 	double	moveSpeed;
 
-	moveSpeed = 0.04;
+	moveSpeed = 0.05;
 	if	(ar_s->key.key_w || ar_s->key.key_up)
 		ft_move_up(ar_s, moveSpeed);
 	if	(ar_s->key.key_s || ar_s->key.key_down)

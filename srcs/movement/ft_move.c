@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 16:54:25 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/03 13:41:40 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 14:35:57 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_move(t_tab *ar_s, double afterPosX, double afterPosY)
 		ar_s->data.pos_player[0] = afterPosX;
 	if (ar_s->data.map[(int)ar_s->data.pos_player[0]][(int)afterPosY] != '1')
 		ar_s->data.pos_player[1] = afterPosY;
-	ft_refresh_raycasting(ar_s);
+	ft_refresh_raycasting(ar_s, 1);
 }
 
 void	ft_move_up(t_tab *ar_s, double moveSpeed)

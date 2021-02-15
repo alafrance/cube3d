@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:41:02 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/06 11:35:04 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 10:07:13 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	ft_put_sprite(t_window *window, t_data data, t_ray ray_data)
 		ft_init_sprite(&window->sprite[i], ray_data, data);
 		ft_calc_height_sprite(&window->sprite[i], data);
 		ft_calc_width_sprite(&window->sprite[i], data);
-		// ft_print_sprite(window->sprite[i]);
 		ft_print_sprite_on_screen(window->sprite[i], data, ray_data, window);
 		i++;
 	}
