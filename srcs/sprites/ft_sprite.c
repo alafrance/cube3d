@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:41:02 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/16 16:23:35 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 23:42:29 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_calc_height_sprite(t_sprite *sprite, t_data data)
 {
 	sprite->sprite_height = abs((int)((data.resolution[1] /
-							sprite->transformY))) / VDIV;
+							sprite->transform_y))) / VDIV;
 	sprite->draw_sprite_y[0] = -sprite->sprite_height / 2 + data.resolution[1]
 							/ 2 + sprite->v_move_screen;
 	if (sprite->draw_sprite_y < 0)
@@ -28,8 +28,8 @@ void	ft_calc_height_sprite(t_sprite *sprite, t_data data)
 
 void	ft_calc_width_sprite(t_sprite *sprite, t_data data)
 {
-	sprite->sprite_width = abs((int)((data.resolution[1] / sprite->transformY)))
-							/ UDIV;
+	sprite->sprite_width = abs((int)((data.resolution[1] /
+						sprite->transform_y))) / UDIV;
 	sprite->draw_sprite_x[0] = -sprite->sprite_width / 2 +
 								sprite->sprite_screen_x;
 	if (sprite->draw_sprite_x[0] < 0)
@@ -44,16 +44,17 @@ void	ft_init_sprite(t_sprite *sprite, t_ray ray_data, t_data data)
 {
 	sprite->x_relative = sprite->x - data.pos_player[0];
 	sprite->y_relative = sprite->y - data.pos_player[1];
-	sprite->invDet = 1.0 / (ray_data.plane[0] * ray_data.dir[1] -
+	sprite->inv_det = 1.0 / (ray_data.plane[0] * ray_data.dir[1] -
 					ray_data.dir[0] * ray_data.plane[1]);
-	sprite->transformX = sprite->invDet * (ray_data.dir[1] * sprite->x_relative
+	sprite->transform_x = sprite->inv_det * (ray_data.dir[1] *
+						sprite->x_relative
 						- ray_data.dir[0] * sprite->y_relative);
-	sprite->transformY = sprite->invDet * (-ray_data.plane[1] *
+	sprite->transform_y = sprite->inv_det * (-ray_data.plane[1] *
 						sprite->x_relative + ray_data.plane[0] *
 						sprite->y_relative);
 	sprite->sprite_screen_x = (int)(data.resolution[0] / 2) * (1 +
-							sprite->transformX / sprite->transformY);
-	sprite->v_move_screen = (int)(VMOVE / sprite->transformY);
+							sprite->transform_x / sprite->transform_y);
+	sprite->v_move_screen = (int)(VMOVE / sprite->transform_y);
 }
 
 void	ft_put_sprite(t_tab *a)

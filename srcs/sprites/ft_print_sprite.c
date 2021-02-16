@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 16:22:56 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/16 16:24:28 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 23:39:52 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	ft_print_sprite_on_screen(t_sprite sprite, t_tab *a)
 		texx = (int)(256 * (i - (-sprite.sprite_width / 2 +
 				sprite.sprite_screen_x)) * a->window.sprite_file.width /
 				sprite.sprite_width) / 256;
-		if (sprite.transformY > 0 && i > 0
+		if (sprite.transform_y > 0 && i > 0
 			&& i < a->data.resolution[0]
-			&& sprite.transformY < a->ray_data.zbuffer[i]
+			&& sprite.transform_y < a->ray_data.zbuffer[i]
 			&& sprite.draw_sprite_y[0] > 0)
 			ft_print_sprite_on_screen_reduce(sprite, a, i, texx);
 		i++;

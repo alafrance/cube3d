@@ -1,5 +1,5 @@
 #ifndef STRUCT_H
-#define STRUCT_H
+# define STRUCT_H
 
 typedef struct	s_data
 {
@@ -18,15 +18,15 @@ typedef struct	s_data
 	int			h_max;
 }				t_data;
 
-typedef struct s_sprite
+typedef struct	s_sprite
 {
 	double		x;
 	double		y;
 	double		x_relative;
 	double		y_relative;
-	double		transformX;
-	double		transformY;
-	double		invDet;
+	double		transform_x;
+	double		transform_y;
+	double		inv_det;
 	int			sprite_screen_x;
 	int			v_move_screen;
 	int			sprite_height;
@@ -34,16 +34,16 @@ typedef struct s_sprite
 	int			draw_sprite_x[2];
 	int			draw_sprite_y[2];
 	double		dist;
-}               t_sprite;
+}				t_sprite;
 
 typedef struct	s_ray {
 	int			step[2];
 	int			map[2];
 	int			is_hit;
 	double		eucli_dist[2];
-	double		deltaDist[2];
+	double		delta_dist[2];
 	double		dist;
-	double		rayDir[2];
+	double		ray_dir[2];
 	double		dir[2];
 	int			side;
 	double		plane[2];
@@ -59,17 +59,17 @@ typedef struct	s_ray {
 	double		*zbuffer;
 }				t_ray;
 
-typedef struct  s_img {
-	void        *img;
+typedef struct	s_img {
+	void		*img;
 	int			*addr;
-	int         bits_per_pixel;
-	int         line_length;
-	int         endian;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
 	int			width;
 	int			height;
-}               t_img;
+}				t_img;
 
-typedef struct s_window {
+typedef struct	s_window {
 	void		*mlx;
 	void		*mlx_win;
 	t_img		img;
@@ -102,6 +102,5 @@ typedef struct	s_tab
 	t_window	window;
 	t_key		key;
 }				t_tab;
-
 
 #endif

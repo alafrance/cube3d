@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 16:27:38 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/16 16:27:40 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 23:39:34 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,6 @@ int				ft_bmp(t_tab *ar_s);
 void			ft_calculate_delta_dist(t_ray *ray_data);
 void			ft_print_sprite_on_screen_reduce(t_sprite sprite, t_tab *a,
 				int i, int texx);
+void			ft_print_sprite_on_screen(t_sprite sprite, t_tab *a);
+
 #endif

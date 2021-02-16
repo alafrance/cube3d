@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:46:25 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/16 16:18:49 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 23:34:33 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ void	ft_calculate_draw_marge(t_ray *ray_data, t_data data)
 
 void	ft_choose_texture(t_window *window, t_ray ray_data)
 {
-	if (ray_data.rayDir[0] < 0 && ray_data.side == 0)
+	if (ray_data.ray_dir[0] < 0 && ray_data.side == 0)
 		window->texture_used = &window->n_texture;
-	else if (ray_data.rayDir[0] > 0 && ray_data.side == 0)
+	else if (ray_data.ray_dir[0] > 0 && ray_data.side == 0)
 		window->texture_used = &window->s_texture;
-	else if (ray_data.rayDir[1] > 0 && ray_data.side == 1)
+	else if (ray_data.ray_dir[1] > 0 && ray_data.side == 1)
 		window->texture_used = &window->e_texture;
-	else if (ray_data.rayDir[1] < 0 && ray_data.side == 1)
+	else if (ray_data.ray_dir[1] < 0 && ray_data.side == 1)
 		window->texture_used = &window->w_texture;
 }
 

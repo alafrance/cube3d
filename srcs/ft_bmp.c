@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 21:49:06 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/16 15:34:47 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 23:45:33 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,9 @@ int		ft_bmp(t_tab *ar_s)
 					ar_s->data.resolution[1] * 24 / 8;
 	filesize = pixelbytesize + sizeof(t_bitmap);
 	fd = open("cub3d.bmp", O_WRONLY | O_TRUNC | O_CREAT, 0777);
-	if (!(pbitmap = calloc(1, sizeof(t_bitmap))))
+	if (!(pbitmap = calloc(1, sizeof(t_bitmap))) ||
+		!(pixelbuffer = malloc(pixelbytesize)))
 		return (ft_error_msg_perso("Malloc error", NULL));
-	if (!(pixelbuffer = malloc(pixelbytesize)))
-		ft_error_msg_perso("Malloc error", NULL);
 	ft_init_header_bmp(pbitmap, ar_s->data, filesize, pixelbytesize);
 	ft_create_img(pixelbuffer, ar_s, pixelbytesize);
 	write(fd, pbitmap, sizeof(t_bitmap));
@@ -72,5 +71,8 @@ int		ft_bmp(t_tab *ar_s)
 	close(fd);
 	free(pbitmap);
 	free(pixelbuffer);
+	free_struct(&ar_s->data);
+	if (ar_s->window.sprite)
+		free(ar_s->window.sprite);
 	return (1);
 }
