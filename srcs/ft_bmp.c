@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 21:49:06 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/15 21:44:07 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 10:45:32 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,15 @@ void	ft_create_img(char *pixelbuffer, t_tab *ar_s, int pixelbytesize)
     int size;
 
     i = 0;
-    j = 0;
+    j = ar_s->data.resolution[0] * ar_s->data.resolution[1] - 1;
     while (i < pixelbytesize)
     {
-        pixelbuffer[i++] = ar_s->window.img.addr[j];
-        pixelbuffer[i++] = ar_s->window.img.addr[j];
-        pixelbuffer[i++] = ar_s->window.img.addr[j];
-        j++;
+        pixelbuffer[i++] = ar_s->window.img.addr[j] & 0xFF;
+        pixelbuffer[i++] = ar_s->window.img.addr[j] >> 8 & 0xFF;
+        pixelbuffer[i++] = ar_s->window.img.addr[j] >> 16;
+        j--;
     }
+    dprintf(1, "%d, %d\n", i, pixelbytesize);
 }
 int		ft_bmp(t_tab *ar_s)
 {
