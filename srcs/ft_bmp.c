@@ -6,12 +6,11 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 21:49:06 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/15 15:05:24 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 21:44:07 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void	ft_init_header_bmp(t_bitmap *pbitmap, t_data data, int filesize, int pixelbytesize)
 {
@@ -32,14 +31,21 @@ void	ft_init_header_bmp(t_bitmap *pbitmap, t_data data, int filesize, int pixelb
 	pbitmap->bitmapinfoheader.numcolorspallette = 0;
 }
 
-void	ft_create_img(char **pixelbuffer, t_tab *ar_s, int pixelbytesize)
+void	ft_create_img(char *pixelbuffer, t_tab *ar_s, int pixelbytesize)
 {
-	int			i;
+    int i;
+    int j;
+    int size;
 
-	i = 0;
-	if (!(*pixelbuffer = malloc(24)))
-		ft_error_msg_perso("Malloc error", NULL);
-	ft_memset(*pixelbuffer, ar_s->window.img.addr[i], 1);
+    i = 0;
+    j = 0;
+    while (i < pixelbytesize)
+    {
+        pixelbuffer[i++] = ar_s->window.img.addr[j];
+        pixelbuffer[i++] = ar_s->window.img.addr[j];
+        pixelbuffer[i++] = ar_s->window.img.addr[j];
+        j++;
+    }
 }
 int		ft_bmp(t_tab *ar_s)
 {
@@ -55,12 +61,12 @@ int		ft_bmp(t_tab *ar_s)
 	fd = open("cub3d.bmp",  O_WRONLY | O_TRUNC | O_CREAT, 0777);
 	if (!(pbitmap  = calloc(1,sizeof(t_bitmap))))
 		return (ft_error_msg_perso("Malloc error", NULL));
-	if (!(pixelbuffer = malloc(24)))
+	if (!(pixelbuffer = malloc(pixelbytesize)))
 		ft_error_msg_perso("Malloc error", NULL);
 	ft_init_header_bmp(pbitmap, ar_s->data, filesize, pixelbytesize);
-	// ft_create_image(&pixelbuffer, ar_s, pixelbytesize);
+	ft_create_img(pixelbuffer, ar_s, pixelbytesize);
 	write(fd, pbitmap, sizeof(t_bitmap));
-	// memset(pixelbuffer, , pixelbytesize);
+    // dprintf(1, "%d, %d\n", pixelbytesize, filesize);
 	write(fd, pixelbuffer, pixelbytesize);
 	close(fd);
 	free(pbitmap);

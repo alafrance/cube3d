@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:58:45 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/15 14:40:44 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 21:42:39 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int main(int ac, char **av)
 		if (ac == 3 && !ft_strcmp(av[2], "--save"))
 			return(ft_bmp(&ar_s));
 		else
-			return(ft_error_msg(22, NULL));//&ar_s.data));
+			return(ft_error_msg(22, &ar_s.data));
 	}
 	ft_refresh_raycasting(&ar_s, 1);
 	launch_minilibx(ar_s.window, ar_s);
