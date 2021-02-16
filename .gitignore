@@ -7,3 +7,4 @@ cub3d
 .DS_Store
 .vs_code
 .vscode
+*.swiftsourceinfo

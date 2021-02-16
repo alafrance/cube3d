@@ -6,7 +6,7 @@
 #    By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 15:06:50 by alafranc          #+#    #+#              #
-#    Updated: 2021/02/16 16:23:18 by alafranc         ###   ########lyon.fr    #
+#    Updated: 2021/02/16 23:54:09 by alafranc         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ clean:
 				make -C ${LIBFT_PATH} clean
 				make -C ${MINILIBX_PATH} clean
 				${RM} ${OBJS} ${OBJS_BONUS}
+				${RM} cub3d.bmp
 
 fclean:			clean
 				${RM} ${NAME}
