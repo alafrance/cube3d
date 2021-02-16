@@ -6,17 +6,16 @@
 #    By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 15:06:50 by alafranc          #+#    #+#              #
-#    Updated: 2021/02/05 19:08:35 by alafranc         ###   ########lyon.fr    #
+#    Updated: 2021/02/16 16:23:18 by alafranc         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-# DONT FORGET TO UNCOMMENT CLEAN AND FCLEAN MINILIBX
 NAME			= cub3d
-FILES			= ft_utility.c printer.c ft_error.c ft_init_struct.c ft_bmp.c \
+FILES			= ft_utility.c ft_error.c ft_init_struct.c ft_bmp.c \
 $(addprefix parsing/, ft_parsing.c ft_check_data.c ft_path_texture.c check_map.c) \
 $(addprefix raycasting/, ft_raycasting.c ft_ray_calc.c ft_window.c ) \
 $(addprefix movement/, ft_move.c ft_event.c ft_rotate.c) \
-$(addprefix sprites/, ft_sprite.c ft_pick_sprite.c)
+$(addprefix sprites/, ft_sprite.c ft_pick_sprite.c ft_print_sprite.c)
 INC_FILES		= cub3d.h struct.h global_var.h
 INC_PATH		= ./includes/
 INC				= $(addprefix ${INC_PATH}, ${INC_FILES})
@@ -25,7 +24,7 @@ SRC				= $(addprefix ${SRC_PATH}, ${FILES})
 
 CC				= clang
 OBJS 			= ${SRC:.c=.o}
-FLAGS			= #-Wall -Wextra -Werror
+FLAGS			= -Wall -Wextra -Werror
 
 #LIBRARY
 NAME_LIBFT 		= libft.a
@@ -51,7 +50,7 @@ ${NAME}: 		lib ${OBJS}
 
 clean:
 				make -C ${LIBFT_PATH} clean
-				#make -C ${MINILIBX_PATH} clean
+				make -C ${MINILIBX_PATH} clean
 				${RM} ${OBJS} ${OBJS_BONUS}
 
 fclean:			clean
@@ -59,7 +58,7 @@ fclean:			clean
 				${RM} ${LIBFT}
 				${RM} ${NAME_LIBFT}
 				${RM} ${NAME_MINILIBX}
-				#${RM} ${MINILIBX}
+				${RM} ${MINILIBX}
 
 re:				fclean all
 

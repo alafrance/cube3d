@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:53:57 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/06 12:01:18 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 15:40:23 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ void	ft_parsing(int fd, t_data *data)
 		gnl = get_next_line(fd, &line);
 	}
 	ft_check_map(data);
-	if (!data->path_etexture || !data->path_ntexture || !data->path_sprite
-		|| !data->path_stexture || !data->path_wtexture || !data->color_floor
-		|| !data->color_roof || !data->resolution[0] || !data->resolution[1])
-		miss_element(data);
 }
 
 void	ft_init_pos(char **line_split, int *pos)
@@ -58,18 +54,8 @@ void	ft_init_pos(char **line_split, int *pos)
 		*pos = -1;
 }
 
-int		fill_struct_parsing(char *line, t_data *data)
+void	*ft_init_array_function(void (*ft_parse[8])(char**, t_data *))
 {
-	char	**line_split;
-	int		pos;
-	void	(*ft_parse[8])(char**, t_data *);
-
-	if (!ft_strlen(line))
-		return (1);
-	line_split = ft_split(line, ' ');
-	ft_init_pos(line_split, &pos);
-	if (pos == -1)
-		return (0);
 	ft_parse[0] = &ft_path_ntexture;
 	ft_parse[1] = &ft_path_stexture;
 	ft_parse[2] = &ft_path_wtexture;
@@ -78,9 +64,32 @@ int		fill_struct_parsing(char *line, t_data *data)
 	ft_parse[5] = &ft_color_floor;
 	ft_parse[6] = &ft_color_roof;
 	ft_parse[7] = &ft_resolution;
+	return (ft_parse);
+}
+
+int		fill_struct_parsing(char *line, t_data *data)
+{
+	char	**line_split;
+	int		pos;
+	void	(**ft_parse)(char**, t_data *);
+
+	if (!ft_strlen(line))
+		return (1);
+	line_split = ft_split(line, ' ');
+	if (!(ft_parse = malloc(sizeof(ft_parse) * 8)))
+		ft_error_msg_perso("Malloc error", data);
+	ft_init_pos(line_split, &pos);
+	ft_parse = ft_init_array_function(ft_parse);
+	if (pos == -1)
+	{
+		free(ft_parse);
+		free_all(line_split, ft_strslen(line_split));
+		return (0);
+	}
 	if (!line_split)
 		return (ft_error_msg(22, data));
 	ft_parse[pos](line_split, data);
 	free_all(line_split, ft_strslen(line_split));
+	free(ft_parse);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:58:45 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/16 10:32:35 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 14:24:47 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_init_general_main(t_tab *ar_s)
 	init_button(&ar_s->key);
 }
 
-int main(int ac, char **av)
+int  main(int ac, char **av)
 {
     int     fd;
 	t_tab ar_s;
@@ -48,7 +48,7 @@ int main(int ac, char **av)
 	if (ac >= 3)
 	{
 		if (ac == 3 && !ft_strcmp(av[2], "--save"))
-			return(ft_bmp(&ar_s));
+			ft_bmp(&ar_s);
 		else
 			return(ft_error_msg(22, &ar_s.data));
 	}
@@ -56,4 +56,7 @@ int main(int ac, char **av)
 	launch_minilibx(ar_s.window, ar_s);
 	close(fd);
 	free_struct(&ar_s.data);
+	if (ar_s.window.sprite)
+		free(ar_s.window.sprite);
+	return (1);
 }

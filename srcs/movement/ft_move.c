@@ -6,66 +6,64 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 16:54:25 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/15 14:35:57 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 14:46:01 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_move(t_tab *ar_s, double afterPosX, double afterPosY)
+void	ft_move(t_tab *ar_s, double after_pos_x, double after_pos_y)
 {
-	if (ar_s->data.map[(int)afterPosX][(int)ar_s->data.pos_player[1]] != '1')
-		ar_s->data.pos_player[0] = afterPosX;
-	if (ar_s->data.map[(int)ar_s->data.pos_player[0]][(int)afterPosY] != '1')
-		ar_s->data.pos_player[1] = afterPosY;
-	ft_refresh_raycasting(ar_s, 1);
+	if (ar_s->data.map[(int)after_pos_x][(int)ar_s->data.pos_player[1]] != '1')
+		ar_s->data.pos_player[0] = after_pos_x;
+	if (ar_s->data.map[(int)ar_s->data.pos_player[0]][(int)after_pos_y] != '1')
+		ar_s->data.pos_player[1] = after_pos_y;
 }
 
-void	ft_move_up(t_tab *ar_s, double moveSpeed)
+void	ft_move_up(t_tab *ar_s, double move_speed)
 {
-	double afterPosX;
-	double	afterPosY;
+	double	after_pos_x;
+	double	after_pos_y;
 
-	afterPosX = ar_s->data.pos_player[0] + ar_s->ray_data.dir[0]
-					* moveSpeed;
-	afterPosY = ar_s->data.pos_player[1] + ar_s->ray_data.dir[1]
-					* moveSpeed;
-	ft_move(ar_s, afterPosX, afterPosY);
-	
+	after_pos_x = ar_s->data.pos_player[0] + ar_s->ray_data.dir[0]
+					* move_speed;
+	after_pos_y = ar_s->data.pos_player[1] + ar_s->ray_data.dir[1]
+					* move_speed;
+	ft_move(ar_s, after_pos_x, after_pos_y);
 }
 
-void	ft_move_down(t_tab	*ar_s, double moveSpeed)
+void	ft_move_down(t_tab *ar_s, double move_speed)
 {
-	double afterPosX;
-	double afterPosY;
+	double after_pos_x;
+	double after_pos_y;
 
-	afterPosX = ar_s->data.pos_player[0] - ar_s->ray_data.dir[0]
-					* moveSpeed;
-	afterPosY = ar_s->data.pos_player[1] - ar_s->ray_data.dir[1]
-					* moveSpeed;
-	ft_move(ar_s, afterPosX, afterPosY);
+	after_pos_x = ar_s->data.pos_player[0] - ar_s->ray_data.dir[0]
+					* move_speed;
+	after_pos_y = ar_s->data.pos_player[1] - ar_s->ray_data.dir[1]
+					* move_speed;
+	ft_move(ar_s, after_pos_x, after_pos_y);
 }
 
-void	ft_move_right(t_tab *ar_s, double moveSpeed)
+void	ft_move_right(t_tab *ar_s, double move_speed)
 {
-	double afterPosX;
-	double	afterPosY;
-	afterPosX = ar_s->data.pos_player[0] - ar_s->ray_data.dir[1]
-					* moveSpeed;
-	afterPosY = ar_s->data.pos_player[1] + ar_s->ray_data.dir[0]
-					* moveSpeed;
-	ft_move(ar_s, afterPosX, afterPosY);
-	
+	double	after_pos_x;
+	double	after_pos_y;
+
+	after_pos_x = ar_s->data.pos_player[0] - ar_s->ray_data.dir[1]
+					* move_speed;
+	after_pos_y = ar_s->data.pos_player[1] + ar_s->ray_data.dir[0]
+					* move_speed;
+	ft_move(ar_s, after_pos_x, after_pos_y);
 }
 
-void	ft_move_left(t_tab	*ar_s, double moveSpeed)
+void	ft_move_left(t_tab *ar_s, double move_speed)
 {
-	double afterPosX;
-	double afterPosY;
+	double after_pos_x;
+	double after_pos_y;
 
-	afterPosX = ar_s->data.pos_player[0] + ar_s->ray_data.dir[1]
-					* moveSpeed;
-	afterPosY = ar_s->data.pos_player[1] - ar_s->ray_data.dir[0]
-					* moveSpeed;
-	ft_move(ar_s, afterPosX, afterPosY);
+	after_pos_x = ar_s->data.pos_player[0] + ar_s->ray_data.dir[1]
+					* move_speed;
+	after_pos_y = ar_s->data.pos_player[1] - ar_s->ray_data.dir[0]
+					* move_speed;
+	ft_move(ar_s, after_pos_x, after_pos_y);
 }

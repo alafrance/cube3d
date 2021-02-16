@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:59:04 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/26 13:37:50 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 14:48:30 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void	ft_check_map(t_data *data)
 	ft_check_map_characters_and_pos(map, data);
 	ft_check_hole_in_wall(map, data->pos_player[0], data->pos_player[1], data);
 	free_all(map, ft_strslen(map));
+	if (!data->path_etexture || !data->path_ntexture || !data->path_sprite
+		|| !data->path_stexture || !data->path_wtexture || !data->color_floor
+		|| !data->color_roof || !data->resolution[0] || !data->resolution[1])
+		miss_element(data);
 }
 
 void	pick_pos_player(char **map, t_data *data, int i, int j)

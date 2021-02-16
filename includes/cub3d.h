@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/16 16:27:38 by alafranc          #+#    #+#             */
+/*   Updated: 2021/02/16 16:27:40 by alafranc         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -48,10 +60,10 @@ void			ft_raycasting(t_data data, t_ray *ray_data, t_window window);
 t_ray			calculate_distance(t_data data, t_ray ray_data, int i);
 void			until_wall_is_hit(t_data data, t_ray *ray_data);
 void			init_step_and_eucli_dist(t_data data, t_ray *ray_data);
-void			caculate_deltaDist(t_ray *ray_data);
 void			calculate_max_map(t_data *data);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
-void			ft_display_column(t_window window, t_ray *ray_data, t_data data, int column);
+void			ft_display_column(t_window window, t_ray *ray_data, t_data data
+				, int column);
 void			ft_init_window_after(t_window *window, t_data data);
 void			ft_refresh_raycasting(t_tab *ar_struct, int is_display);
 void			init_ray_data_before(t_ray *ray_data, t_data data);
@@ -60,23 +72,24 @@ int				change_color_in_hexa(char *color);
 int				ft_event_pressed(int keycode, t_tab *ar_s);
 int				ft_event_released(int keycode, t_tab *ar_s);
 int				ft_close_window(t_tab *ar_s);
-void			ft_move(t_tab *ar_s, double afterPosX, double afterPosY);
+void			ft_move(t_tab *ar_s, double after_pos_x, double after_pos_y);
 int				ft_loop_hook(t_tab *ar_s);
-void			ft_move_up(t_tab *ar_s, double moveSpeed);
-void			ft_move_down(t_tab *ar_s, double moveSpeed);
-void			ft_move_left(t_tab	*ar_s, double moveSpeed);
-void			ft_move_right(t_tab *ar_s, double moveSpeed);
-void			ft_rotate(t_tab *ar_s, double rotSpeed);
-void			ft_rotate_left(t_tab *ar_s, double rotSpeed);
-void			ft_rotate_right(t_tab *ar_s, double rotSpeed);
+void			ft_move_up(t_tab *ar_s, double move_speed);
+void			ft_move_down(t_tab *ar_s, double move_speed);
+void			ft_move_left(t_tab	*ar_s, double move_speed);
+void			ft_move_right(t_tab *ar_s, double move_speed);
+void			ft_rotate(t_tab *ar_s, double rot_speed);
+void			ft_rotate_left(t_tab *ar_s, double rot_speed);
+void			ft_rotate_right(t_tab *ar_s, double rot_speed);
 void			init_tab_ar_s(t_tab *ar_s, t_ray ray_data, t_data data
 								, t_window window);
-void			ft_calculate_texture(t_ray *ray_data, t_img texture, t_data data);
+void			ft_calculate_texture(t_ray *ray_data, t_img texture,
+				t_data data);
 void			ft_open_file(t_img *texture, void *mlx, char *path_texture);
 void			ft_initializer_minilibx(t_window window, t_tab ar_s);
 void			ft_calculate_draw_marge(t_ray *ray_data, t_data data);
 void			ft_choose_texture(t_window *window, t_ray ray_data);
-void			ft_put_sprite(t_window *window, t_data data, t_ray ray_data);
+void			ft_put_sprite(t_tab *a);
 int				ft_count_sprite(t_data data);
 t_sprite		*ft_pick_sprite(t_data data, int number_sprites);
 void			init_button(t_key *key);
@@ -86,4 +99,7 @@ void			fix_resolution_data(t_data *data, t_window window);
 int				closest_multiple_of_x(int number, int x);
 void			ft_init_general_main(t_tab *ar_s);
 int				ft_bmp(t_tab *ar_s);
+void			ft_calculate_delta_dist(t_ray *ray_data);
+void			ft_print_sprite_on_screen_reduce(t_sprite sprite, t_tab *a,
+				int i, int texx);
 #endif

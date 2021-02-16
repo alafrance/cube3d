@@ -6,14 +6,13 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:23:23 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/15 11:33:48 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 14:44:08 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-int	ft_event_pressed(int keycode, t_tab *ar_s)
+int		ft_event_pressed(int keycode, t_tab *ar_s)
 {
 	if (keycode == KEY_W)
 		ar_s->key.key_w = 1;
@@ -59,22 +58,23 @@ int		ft_event_released(int keycode, t_tab *ar_s)
 	return (0);
 }
 
-int ft_loop_hook(t_tab *ar_s)
+int		ft_loop_hook(t_tab *ar_s)
 {
-	double	moveSpeed;
+	double	move_speed;
 
-	moveSpeed = 0.05;
-	if	(ar_s->key.key_w || ar_s->key.key_up)
-		ft_move_up(ar_s, moveSpeed);
-	if	(ar_s->key.key_s || ar_s->key.key_down)
-			ft_move_down(ar_s, moveSpeed);
-	if	(ar_s->key.key_d)
-		ft_move_left(ar_s, moveSpeed);
-	if	(ar_s->key.key_a)
-		ft_move_right(ar_s, moveSpeed);
-	if	(ar_s->key.key_left)
-		ft_rotate_left(ar_s, moveSpeed);
-	if	(ar_s->key.key_right)
-		ft_rotate_right(ar_s, moveSpeed);
+	move_speed = 0.05;
+	if (ar_s->key.key_w || ar_s->key.key_up)
+		ft_move_up(ar_s, move_speed);
+	if (ar_s->key.key_s || ar_s->key.key_down)
+		ft_move_down(ar_s, move_speed);
+	if (ar_s->key.key_d)
+		ft_move_left(ar_s, move_speed);
+	if (ar_s->key.key_a)
+		ft_move_right(ar_s, move_speed);
+	if (ar_s->key.key_left)
+		ft_rotate_left(ar_s, move_speed);
+	if (ar_s->key.key_right)
+		ft_rotate_right(ar_s, move_speed);
+	ft_refresh_raycasting(ar_s, 1);
 	return (1);
 }

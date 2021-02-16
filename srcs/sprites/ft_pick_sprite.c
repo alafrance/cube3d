@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 16:54:57 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/06 11:39:55 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 16:25:34 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_sprite	*ft_pick_sprite(t_data data, int number_sprites)
 	return (sprite);
 }
 
-int		ft_count_sprite(t_data data)
+int			ft_count_sprite(t_data data)
 {
 	int i;
 	int j;
@@ -63,22 +63,22 @@ int		ft_count_sprite(t_data data)
 	return (count);
 }
 
-t_sprite *ft_sort_sprite(t_sprite *sprite, int number_sprites)
+t_sprite	*ft_sort_sprite(t_sprite *sprite, int number_sprites)
 {
-	int i;
-	t_sprite tmp;
+	int			i;
+	t_sprite	tmp;
 
 	i = 0;
 	while (i + 1 < number_sprites)
 	{
-			if (sprite[i].dist < sprite[i + 1].dist)
-			{
-				tmp = sprite[i];
-				sprite[i] = sprite[i + 1];
-				sprite[i + 1] = tmp;
-				i = -1;
-			}
-			i++;	
+		if (sprite[i].dist < sprite[i + 1].dist)
+		{
+			tmp = sprite[i];
+			sprite[i] = sprite[i + 1];
+			sprite[i + 1] = tmp;
+			i = -1;
+		}
+		i++;
 	}
 	return (sprite);
 }
