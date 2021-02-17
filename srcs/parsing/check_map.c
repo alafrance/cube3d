@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:59:04 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/16 14:48:30 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 04:24:15 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_check_map_characters_and_pos(char **map, t_data *data)
 		j = 0;
 		while (map[i][j])
 		{
-			if (!(ft_strchr("012 ", map[i][j])))
+			if (!(ft_strchr("0123 ", map[i][j])))
 				pick_pos_player(map, data, i, j);
 			j++;
 		}
@@ -67,7 +67,7 @@ void	ft_check_hole_in_wall(char **map, int i, int j, t_data *data)
 	if (i < 0 || j < 0 || i >= ft_strslen(map) ||
 		j >= (int)ft_strlen(map[i]) || map[i][j] == ' ')
 		ft_error_msg_perso("Hole in Map", data);
-	if (map[i][j] == '0' || map[i][j] == '2')
+	if (map[i][j] == '0' || map[i][j] == '2' || map[i][j] == '3')
 	{
 		map[i][j] = 'c';
 		ft_check_hole_in_wall(map, i - 1, j, data);

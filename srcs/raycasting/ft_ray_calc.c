@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 13:28:06 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/16 23:34:40 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 04:23:43 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ void	until_wall_is_hit(t_data data, t_ray *ray_data)
 			ray_data->map[1] += ray_data->step[1];
 			ray_data->side = 1;
 		}
-		if (data.map[ray_data->map[0]][ray_data->map[1]] == '1')
+		if (data.map[ray_data->map[0]][ray_data->map[1]] == '1'
+			|| data.map[ray_data->map[0]][ray_data->map[1]] == '3')
 			ray_data->is_hit = 1;
 	}
 }
