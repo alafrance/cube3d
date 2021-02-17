@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:46:25 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/17 15:30:42 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 16:18:56 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 void	ft_refresh_raycasting(t_tab *ar_struct, int is_display)
 {
 	ft_init_window_after(&ar_struct->window, ar_struct->data);
-	ft_print_struct(ar_struct->ray_data, ar_struct->data);
-	// if (is_display)
-		// mlx_clear_window(ar_struct->window.mlx, ar_struct->window.mlx_win);
 	ft_raycasting(ar_struct->data, &ar_struct->ray_data, ar_struct->window);
 	ft_put_sprite(ar_struct);
 	if (is_display)
@@ -49,10 +46,7 @@ void	ft_raycasting(t_data data, t_ray *ray_data, t_window window)
 
 void	ft_calculate_draw_marge(t_ray *ray_data, t_data data)
 {
-	if (ray_data->dist == 0.0)
-		ray_data->h_wall = data.resolution[1];
-	else
-		ray_data->h_wall = (int)(data.resolution[1] / ray_data->dist);
+	ray_data->h_wall = (int)(data.resolution[1] / ray_data->dist);
 	ray_data->draw[0] = -ray_data->h_wall / 2 + data.resolution[1] / 2;
 	if (ray_data->draw[0] < 0)
 		ray_data->draw[0] = 0;

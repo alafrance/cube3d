@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 13:03:22 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/16 14:41:21 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 16:17:29 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ void	init_position_rest(t_ray *ray_data, t_data data)
 {
 	if (data.pos_camera == 'W')
 	{
-		ray_data->dir[0] = 0;
-		ray_data->dir[1] = -1;
+		ray_data->dir[0] = 0.01;
+		ray_data->dir[1] = -1.01;
 		ray_data->plane[0] = -0.66;
 		ray_data->plane[1] = 0;
 	}
 	else if (data.pos_camera == 'E')
 	{
-		ray_data->dir[0] = 0;
-		ray_data->dir[1] = 1;
+		ray_data->dir[0] = 0.01;
+		ray_data->dir[1] = 1.01;
 		ray_data->plane[0] = 0.66;
 		ray_data->plane[1] = 0;
 	}
@@ -59,15 +59,15 @@ void	init_ray_data_before(t_ray *ray_data, t_data data)
 	data.map[(int)data.pos_player[0]][(int)data.pos_player[1]] = '0';
 	if (data.pos_camera == 'N')
 	{
-		ray_data->dir[0] = -1;
-		ray_data->dir[1] = 0;
+		ray_data->dir[0] = -1.01;
+		ray_data->dir[1] = 0.01;
 		ray_data->plane[0] = 0;
 		ray_data->plane[1] = 0.66;
 	}
 	else if (data.pos_camera == 'S')
 	{
-		ray_data->dir[0] = 1;
-		ray_data->dir[1] = 0;
+		ray_data->dir[0] = 1.01;
+		ray_data->dir[1] = 0.01;
 		ray_data->plane[0] = 0;
 		ray_data->plane[1] = -0.66;
 	}
