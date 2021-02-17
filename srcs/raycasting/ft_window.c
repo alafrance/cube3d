@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:02:11 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/16 23:46:37 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 02:20:41 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,6 @@ void	ft_init_window_after(t_window *window, t_data data)
 	ft_open_file(&window->e_texture, window->mlx, data.path_etexture);
 	ft_open_file(&window->w_texture, window->mlx, data.path_wtexture);
 	ft_open_file(&window->sprite_file, window->mlx, data.path_sprite);
-}
-
-void	fix_resolution_data(t_data *data, t_window window)
-{
-	int width_max;
-	int height_max;
-
-	mlx_get_screen_size(window.mlx, &width_max, &height_max);
-	data->resolution[0] = closest_multiple_of_x(data->resolution[0], 64);
-	data->resolution[1] = closest_multiple_of_x(data->resolution[1], 64);
-	if (data->resolution[0] > width_max)
-		data->resolution[0] = width_max;
-	if (data->resolution[1] > height_max)
-		data->resolution[1] = height_max;
 }
 
 void	ft_open_file(t_img *texture, void *mlx, char *path_texture)
@@ -62,6 +48,21 @@ int		change_color_in_hexa(char *color)
 	return (h_color);
 }
 
+void	ft_display_wall_column(t_window window, t_ray *ray_data, int cell)
+{
+	int		color;
+
+	color = 0;
+	ray_data->texy = (int)ray_data->texpos &
+					(window.texture_used->height - 1);
+	ray_data->texpos += ray_data->step_tex;
+	color = window.texture_used->addr[window.texture_used->height
+					* ray_data->texy + ray_data->texx];
+	if (ray_data->h_wall <= 150)
+		color = (color >> 1) & 8355711;
+	window.img.addr[cell] = color;
+}
+
 void	ft_display_column(t_window window, t_ray *ray_data, t_data data
 		, int column)
 {
@@ -76,12 +77,7 @@ void	ft_display_column(t_window window, t_ray *ray_data, t_data data
 		window.img.addr[i * data.resolution[0] + column] = color_floor;
 	while (i < ray_data->draw[1])
 	{
-		ray_data->texy = (int)ray_data->texpos &
-						(window.texture_used->height - 1);
-		ray_data->texpos += ray_data->step_tex;
-		window.img.addr[i * data.resolution[0] + column] =
-						window.texture_used->addr[window.texture_used->height
-						* ray_data->texy + ray_data->texx];
+		ft_display_wall_column(window, ray_data, i * data.resolution[0] + column);
 		i++;
 	}
 	i--;
@@ -89,3 +85,4 @@ void	ft_display_column(t_window window, t_ray *ray_data, t_data data
 		window.img.addr[i * data.resolution[0] + column] = color_roof;
 	ray_data->step_tex_x++;
 }
+
