@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:23:23 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/17 04:26:10 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 14:31:06 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,10 @@ int		ft_event_released(int keycode, t_tab *ar_s)
 int		ft_loop_hook(t_tab *ar_s)
 {
 	double	move_speed;
+	double	rot_speed;
 
-	move_speed = 0.06;
+	move_speed = 0.09;
+	rot_speed = 0.09;
 	if (ar_s->key.key_w || ar_s->key.key_up)
 		ft_move_up(ar_s, move_speed);
 	if (ar_s->key.key_s || ar_s->key.key_down)
@@ -72,9 +74,9 @@ int		ft_loop_hook(t_tab *ar_s)
 	if (ar_s->key.key_a)
 		ft_move_right(ar_s, move_speed);
 	if (ar_s->key.key_left)
-		ft_rotate_left(ar_s, move_speed);
+		ft_rotate_left(ar_s, rot_speed);
 	if (ar_s->key.key_right)
-		ft_rotate_right(ar_s, move_speed);
+		ft_rotate_right(ar_s, rot_speed);
 	ft_refresh_raycasting(ar_s, 1);
 	return (1);
 }

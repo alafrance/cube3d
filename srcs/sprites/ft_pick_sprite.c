@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 16:54:57 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/16 16:25:34 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 14:39:16 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ t_sprite	*ft_pick_sprite(t_data data, int number_sprites)
 		{
 			if (data.map[i][j] == '2')
 			{
-				sprite[sprite_i].x = i;
-				sprite[sprite_i++].y = j;
+				sprite[sprite_i].x = i + 0.5;
+				sprite[sprite_i++].y = j + 0.5;
 			}
 			j++;
 		}

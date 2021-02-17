@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:59:04 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/17 04:24:15 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 14:35:53 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	pick_pos_player(char **map, t_data *data, int i, int j)
 	if (ft_strchr("NSWE", map[i][j])
 		&& data->pos_player[0] == -1 && data->pos_player[1] == -1)
 	{
-		data->pos_player[0] = i;
-		data->pos_player[1] = j;
+		data->pos_player[0] = i + 0.5;
+		data->pos_player[1] = j + 0.5;
 		data->pos_camera = map[i][j];
 		map[i][j] = '0';
 	}

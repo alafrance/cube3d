@@ -1,35 +1,15 @@
 #ifndef STRUCT_BMP_H
 # define STRUCT_BMP_H
 
-# pragma pack(push,1)
-
 typedef struct			s_fileheader
 {
-	char				signature[2];
-	int					filesize;
-	int					reserved;
-	int					fileoffset_to_pixelarray;
+	int					file_size;
+	int					header_size;
+	int					bytes_size;
+	int					image_size;
+	int					planes;
+	int					bytes_number;
+	char				header[54];
 }						t_fileheader;
-
-typedef struct			s_bitmapinfoheader
-{
-	int					dibheadersize;
-	int					width;
-	int					height;
-	short				planes;
-	short				bitsperpixel;
-	int					compression;
-	int					imagesize;
-	int					ypixelpermeter;
-	int					xpixelpermeter;
-	int					numcolorspallette;
-	int					mostimpcolor;
-}						t_bitmapinfoheader;
-
-typedef struct			s_bitmap{
-	t_fileheader		fileheader;
-	t_bitmapinfoheader	bitmapinfoheader;
-}						t_bitmap;
-# pragma pack(pop)
 
 #endif
