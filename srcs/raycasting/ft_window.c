@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:02:11 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/17 14:41:35 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 09:50:17 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ void	ft_display_column(t_window window, t_ray *ray_data, t_data data
 		window.img.addr[i * data.resolution[0] + column] = color_floor;
 	while (i < ray_data->draw[1])
 	{
-		ft_display_wall_column(window, ray_data, i * data.resolution[0] + column);
+		ft_display_wall_column(window, ray_data, i * data.resolution[0] +
+								column);
 		i++;
 	}
 	i--;
@@ -85,4 +86,3 @@ void	ft_display_column(t_window window, t_ray *ray_data, t_data data
 		window.img.addr[i * data.resolution[0] + column] = color_roof;
 	ray_data->step_tex_x++;
 }
-

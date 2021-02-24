@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 10:14:13 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/17 16:16:55 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 10:29:18 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,6 @@ int		ft_is_number_str(char *str)
 	return (1);
 }
 
-void	fix_resolution_data(t_data *data, t_window window)
-{
-	int width_max;
-	int height_max;
-
-	mlx_get_screen_size(window.mlx, &width_max, &height_max);
-	data->resolution[0] = closest_multiple_of_x(data->resolution[0], 64);
-	data->resolution[1] = closest_multiple_of_x(data->resolution[1], 64);
-	if (data->resolution[0] > width_max)
-		data->resolution[0] = width_max;
-	if (data->resolution[1] > height_max)
-		data->resolution[1] = height_max;
-}
-
 int		ft_is_format(char *filename, char *extension)
 {
 	int i;
@@ -81,4 +67,17 @@ int		closest_multiple_of_x(int number, int x)
 	while (number % x != 0)
 		number++;
 	return (number);
+}
+
+int		ft_count_str(char *str, char c)
+{
+	int i;
+	int count;
+
+	count = 0;
+	i = 0;
+	while (str[i])
+		if (str[i++] == c)
+			count++;
+	return (count);
 }

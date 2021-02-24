@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 00:03:45 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/11 11:46:38 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 10:33:52 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,17 @@ int		ft_strchr_gnl(char *file, int c)
 	return (-1);
 }
 
+int		count_end_line(char *s)
+{
+	int end;
+
+	if (ft_strchr_gnl(s, '\n') == -1)
+		end = ft_strlen(s);
+	else
+		end = ft_strchr_gnl(s, '\n');
+	return (end);
+}
+
 char	*ft_substr_line(char *s)
 {
 	char	*buf;
@@ -61,10 +72,9 @@ char	*ft_substr_line(char *s)
 
 	i = 0;
 	size = 0;
-	if (ft_strchr_gnl(s, '\n') == -1)
-		end = ft_strlen(s);
-	else
-		end = ft_strchr_gnl(s, '\n');
+	if (!s)
+		return (NULL);
+	end = count_end_line(s);
 	if (end == 0)
 		return (ft_strdup(""));
 	while (i < end && s[i])

@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:46:25 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/17 16:18:56 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 09:50:06 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_refresh_raycasting(t_tab *ar_struct, int is_display)
 		ar_struct->window.mlx_win, ar_struct->window.img.img, 0, 0);
 	if (ar_struct->ray_data.zbuffer)
 		free(ar_struct->ray_data.zbuffer);
-	mlx_destroy_image(ar_struct->window.mlx,  ar_struct->window.img.img);
+	mlx_destroy_image(ar_struct->window.mlx, ar_struct->window.img.img);
 }
 
 void	ft_raycasting(t_data data, t_ray *ray_data, t_window window)

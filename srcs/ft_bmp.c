@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 21:49:06 by alafranc          #+#    #+#             */
-/*   Updated: 2021/02/17 14:09:28 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 10:01:21 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 void	ft_init_header_bmp(t_fileheader *header, t_data data)
 {
-	header->image_size = (((data.resolution[0] * 32 + 31) / 32) * 4)
-						* data.resolution[1]; 
+	header->image_size = ((data.resolution[0]) * 4)
+						* data.resolution[1];
 	header->file_size = header->image_size + 54;
 	header->header_size = 54;
 	header->bytes_size = 40;
 	header->planes = 1;
 	header->bytes_number = 32;
-
 	ft_memmove(header->header, "BM", 2);
-	ft_memmove(header->header + 2,  &header->file_size, 4);
+	ft_memmove(header->header + 2, &header->file_size, 4);
 	ft_memmove(header->header + 10, &header->header_size, 4);
 	ft_memmove(header->header + 14, &header->bytes_size, 4);
 	ft_memmove(header->header + 18, &data.resolution[0], 4);

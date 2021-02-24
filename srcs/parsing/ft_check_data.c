@@ -6,7 +6,7 @@
 /*   By: alafranc <alafranc@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 13:23:13 by alafranc          #+#    #+#             */
-/*   Updated: 2021/01/15 14:57:24 by alafranc         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 10:29:01 by alafranc         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_color(char **line_split, t_data *data, char *color)
 	i = 0;
 	ft_error_data(line_split, data, color);
 	color_split = ft_split(line_split[1], ',');
-	if (ft_strslen(color_split) != 3)
+	if (ft_strslen(color_split) != 3 || ft_count_str(line_split[1], ',') != 2)
 	{
 		free_all(color_split, ft_strslen(color_split));
 		ft_error_msg_perso("Wrong Format of color: R,G,B", data);
